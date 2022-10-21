@@ -1,11 +1,12 @@
-﻿namespace DataAccess.Models;
+﻿// ReSharper disable InconsistentNaming
+namespace DataAccess.Models;
 
 public class UserModel
 {
-    public int Id { get; set; }
+    public int id { get; set; }
 
-    public string FirstName { get; set; }
+    public string firstname { get; set; }
 
-    public string LastName { get; set; }
+    public string lastname { get; set; }
 
 }

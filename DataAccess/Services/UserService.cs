@@ -20,7 +20,7 @@ public class UserService : IUserService
         .FirstOrDefault();
 
     public Task InsertUser(UserModel user)
-        => _db.SaveData("user_create", new {user.FirstName, user.LastName});
+        => _db.SaveData("user_create", new {user.firstname, user.lastname});
     
     public Task UpdateUser(UserModel user)
         => _db.SaveData("user_update", user);
