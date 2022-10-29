@@ -1,5 +1,6 @@
 ﻿@page "/AllUsers"
 @using DataAccess.Models
+
 @inject ILogger<AllUsersPage> _logger
 @inject IUserService _userService
 
@@ -31,7 +32,6 @@ else
 }
 
 @code {
-
     protected List<UserModel> Users = null;
     
     protected override async Task  OnInitializedAsync()
