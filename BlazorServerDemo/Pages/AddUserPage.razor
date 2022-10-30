@@ -1,0 +1,37 @@
+﻿@page "/AddUserPage"
+@inject IUserService _access
+@using DataAccess.Models
+
+<div class="h3">@_message</div>
+<EditForm Model="@_newperson" OnValidSubmit="@SubmitPersonAsync">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    
+        <div>
+            <label class="form-label" for="firstName">First Name</label>
+            <InputText id="firstName" @bind-Value="@_newperson.firstname"></InputText>
+        </div>
+        <div>
+            <label class="form-label" for="lastName">Last Name</label>
+            <InputText id="lastName" @bind-Value="@_newperson.lastname"></InputText>
+        </div>
+        <div>
+            <label class="form-label" for="email">Email</label>
+            <InputText id="email" @bind-Value="@_newperson.email"></InputText>
+        </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private UserModel _newperson = new();
+
+    private string _message = "Please enter user data";
+
+    private async Task SubmitPersonAsync()
+    {
+        await _access.InsertUser(_newperson);
+        _message = "User submitted successfully";
+        //clear the submitted user  
+        _newperson = new();
+    }
+}
