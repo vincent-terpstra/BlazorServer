@@ -20,7 +20,7 @@ public class SqlDataAccess : ISqlDataAccess
     }
     
 
-    public async Task<IEnumerable<TResult>> LoadData<TResult, TRequest>(
+    public async Task<IEnumerable<TResult>> LoadDataAsync<TResult, TRequest>(
         string storedProcedure,
         TRequest parameters)
     {
@@ -28,7 +28,7 @@ public class SqlDataAccess : ISqlDataAccess
         return await connection.QueryAsync<TResult>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
     }
 
-    public async Task SaveData<T>(
+    public async Task SaveDataAsync<T>(
         string storedProcedure,
         T parameters)
     {

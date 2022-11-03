@@ -12,19 +12,28 @@ public class UserService : IUserService
         _db = db;
     }
 
-    public Task<IEnumerable<UserModel>> GetUsers()
-        => _db.LoadData<UserModel, dynamic>("user_getall", new{});
+    public Task<IEnumerable<PersonModel>> GetUsersAsync()
+        => _db.LoadDataAsync<PersonModel, dynamic>("user_getall", new{});
 
-    public async Task<UserModel?> GetUser(int id)
-        => (await _db.LoadData<UserModel, dynamic>("user_get", new { id }))
+    public async Task<PersonModel?> GetUserAsync(int id)
+        => (await _db.LoadDataAsync<PersonModel, dynamic>("user_get", new { id }))
         .FirstOrDefault();
 
-    public Task InsertUser(UserModel user)
-        => _db.SaveData("user_create", new {user.firstname, user.lastname});
+    public async Task InsertUserAsync(PersonModel person)
+    {
+        if (string.IsNullOrWhiteSpace(person.firstname))
+            throw new ArgumentException("Person requires a first name", "FirstName");
+        
+        if (string.IsNullOrWhiteSpace(person.lastname))
+            throw new ArgumentException("Person requires a last name", "LastName");
+        
+        await _db.SaveDataAsync("user_create", new {person.firstname, person.lastname});
+    }
+        
     
-    public Task UpdateUser(UserModel user)
-        => _db.SaveData("user_update", user);
+    public Task UpdateUserAsync(PersonModel person)
+        => _db.SaveDataAsync("user_update", person);
 
-    public Task DeleteUser(int id)
-        => _db.SaveData("user_delete", new { id });
+    public Task DeleteUserAsync(int id)
+        => _db.SaveDataAsync("user_delete", new { id });
 }

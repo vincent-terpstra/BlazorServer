@@ -17,7 +17,7 @@ public static class WebAppExtensionMethods
     {
         try
         {
-            return Results.Ok(await data.GetUsers());
+            return Results.Ok(await data.GetUsersAsync());
         }
         catch (Exception ex)
         {
@@ -29,7 +29,7 @@ public static class WebAppExtensionMethods
     {
         try
         {
-            var results = await service.GetUser(id);
+            var results = await service.GetUserAsync(id);
             if (results == null) return Results.NotFound();
             return Results.Ok(results);
 
@@ -40,11 +40,11 @@ public static class WebAppExtensionMethods
         }
     }
 
-    private static async Task<IResult> CreateUser(UserModel model, IUserService service)
+    private static async Task<IResult> CreateUser(PersonModel model, IUserService service)
     {
         try
         {
-            await service.InsertUser(new UserModel() {firstname = model.firstname, lastname = model.lastname});
+            await service.InsertUserAsync(new PersonModel() {firstname = model.firstname, lastname = model.lastname});
             return Results.Ok();
         }
         catch (Exception ex)
@@ -52,11 +52,11 @@ public static class WebAppExtensionMethods
             return Results.Problem(ex.Message);
         }
     }
-    private static async Task<IResult> UpdateUser(UserModel user, IUserService service)
+    private static async Task<IResult> UpdateUser(PersonModel person, IUserService service)
     {
         try
         {
-            await service.UpdateUser(user);
+            await service.UpdateUserAsync(person);
             return Results.Ok();
         }
         catch (Exception ex)
@@ -69,7 +69,7 @@ public static class WebAppExtensionMethods
     {
         try
         {
-            await service.DeleteUser(id);
+            await service.DeleteUserAsync(id);
             return Results.Ok();
         }
         catch (Exception ex)

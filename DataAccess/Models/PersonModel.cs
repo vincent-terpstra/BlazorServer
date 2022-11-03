@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Models;
 
-public class UserModel
+public class PersonModel
 {
     public int id { get; set; }
 

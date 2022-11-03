@@ -32,11 +32,11 @@ else
 }
 
 @code {
-    protected List<UserModel> Users = null;
+    protected List<PersonModel> Users = null;
     
     protected override async Task  OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        Users = (await _userService.GetUsers()).ToList();
+        Users = (await _userService.GetUsersAsync()).ToList();
     }
 }

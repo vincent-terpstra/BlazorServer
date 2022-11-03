@@ -23,13 +23,13 @@
 </EditForm>
 
 @code {
-    private UserModel _newperson = new();
+    private PersonModel _newperson = new();
 
     private string _message = "Please enter user data";
 
     private async Task SubmitPersonAsync()
     {
-        await _access.InsertUser(_newperson);
+        await _access.InsertUserAsync(_newperson);
         _message = "User submitted successfully";
         //clear the form by resetting newperson  
         _newperson = new();

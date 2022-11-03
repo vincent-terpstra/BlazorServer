@@ -4,9 +4,9 @@ namespace DataAccess.Services;
 
 public interface IUserService
 {
-    Task<IEnumerable<UserModel>> GetUsers();
-    Task<UserModel?> GetUser(int id);
-    Task InsertUser(UserModel user);
-    Task UpdateUser(UserModel user);
-    Task DeleteUser(int id);
+    Task<IEnumerable<PersonModel>> GetUsersAsync();
+    Task<PersonModel?> GetUserAsync(int id);
+    Task InsertUserAsync(PersonModel person);
+    Task UpdateUserAsync(PersonModel person);
+    Task DeleteUserAsync(int id);
 }

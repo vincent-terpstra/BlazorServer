@@ -2,11 +2,11 @@
 
 public interface ISqlDataAccess
 {
-    Task<IEnumerable<T>> LoadData<T, U>(
+    Task<IEnumerable<T>> LoadDataAsync<T, U>(
         string storedProcedure,
         U parameters);
 
-    Task SaveData<T>(
+    Task SaveDataAsync<T>(
         string storedProcedure,
         T parameters);
 }
