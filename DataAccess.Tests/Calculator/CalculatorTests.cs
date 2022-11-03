@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using Xunit;
 
-namespace DataAccess.Tests;
-using DataAccess;
+namespace DataAccess.Tests.Calculator;
 
 public class CalculatorTests
 {
@@ -16,7 +14,7 @@ public class CalculatorTests
         //Note this is only testing that Subtract returns -5
         
         //Act
-        double actual = Calculator.Subtract(x, y);
+        double actual = Tests.Calculator.Calculator.Subtract(x, y);
         
         //Assert
         Assert.Equal(expected, actual);
@@ -33,7 +31,7 @@ public class CalculatorTests
         //Arrange
         
         //Act
-        double actual = Calculator.Add(x, y);
+        double actual = Tests.Calculator.Calculator.Add(x, y);
         //Assert
         Assert.Equal(expected, actual);
     }
@@ -49,7 +47,7 @@ public class CalculatorTests
         //Arrange
         
         //Act
-        double actual = Calculator.Multiply(x, y);
+        double actual = Tests.Calculator.Calculator.Multiply(x, y);
         //Assert
         Assert.Equal(expected, actual);
     }
@@ -64,7 +62,7 @@ public class CalculatorTests
         //Arrange
         
         //Act
-        double actual = Calculator.Divide(x, y);
+        double actual = Tests.Calculator.Calculator.Divide(x, y);
         //Assert
         Assert.Equal(expected, actual);
     }
@@ -81,6 +79,6 @@ public class CalculatorTests
         //Assert
         //note normally dividing by zero returns double.PositiveInfinity
         //throwing is specific to my Calculator.Divide
-        Assert.Throws<DivideByZeroException>(() =>Calculator.Divide(x, y));
+        Assert.Throws<DivideByZeroException>(() =>Tests.Calculator.Calculator.Divide(x, y));
     }
 }

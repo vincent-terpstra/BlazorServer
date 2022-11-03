@@ -1,4 +1,6 @@
-﻿namespace DataAccess;
+﻿using System;
+
+namespace DataAccess.Tests.Calculator;
 
 /// <summary>
 /// Calculator class used in XUnit testing project
