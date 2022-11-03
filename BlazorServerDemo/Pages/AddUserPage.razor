@@ -31,7 +31,7 @@
     {
         await _access.InsertUser(_newperson);
         _message = "User submitted successfully";
-        //clear the submitted user  
+        //clear the form by resetting newperson  
         _newperson = new();
     }
 }

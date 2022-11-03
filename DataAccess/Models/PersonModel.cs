@@ -22,4 +22,7 @@ public class UserModel
     [EmailAddress]
     public string email { get; set; }
 
+
+    public string FullName => $"{firstname} {lastname}";
+
 }
