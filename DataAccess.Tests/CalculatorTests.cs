@@ -68,7 +68,7 @@ public class CalculatorTests
     }
 
     [Fact]
-    public void Divide_ShouldThrow_WhenYIsZero()
+    public void Divide_DivideByZero_Throws()
     {
         //Arrange
         double x = 5;
