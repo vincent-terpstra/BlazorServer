@@ -8,7 +8,7 @@ using DataAccess;
 public class CalculatorTests
 {
     [Fact]
-    public void Subtract_SimpleValues_ShouldCalculate()
+    public void Subtract_ValuesShouldCalculate()
     {
         //Arrange
         double x = 5, y = 10;
@@ -27,7 +27,7 @@ public class CalculatorTests
     [InlineData(2, 3, 5)]
     [InlineData(double.MaxValue, 5, double.MaxValue)]
     [InlineData(double.NaN, double.NaN, double.NaN)]
-    public void Add_SimpleValues_Should_Calculate(double x, double y, double expected)
+    public void Add_ValuesShouldCalculate(double x, double y, double expected)
     {
         //Arrange
         
@@ -42,7 +42,7 @@ public class CalculatorTests
     [InlineData(2, -3, -6)]
     [InlineData(double.PositiveInfinity, -1, double.NegativeInfinity)]
     [InlineData(double.NaN, double.NaN, double.NaN)]
-    public void Multiply_SimpleValues_Should_Calculate(double x, double y, double expected)
+    public void Multiply_ValuesShouldCalculate(double x, double y, double expected)
     {
         //Arrange
         
@@ -57,7 +57,7 @@ public class CalculatorTests
     [InlineData(10, 20, .5)]
     [InlineData(5, double.NegativeInfinity, 0)]
     [InlineData(double.NaN, double.NaN, double.NaN)]
-    public void Divide_SimpleValues_Should_Calculate(double x, double y, double expected)
+    public void Divide_SimpleValuesShouldCalculate(double x, double y, double expected)
     {
         //Arrange
         
@@ -68,7 +68,7 @@ public class CalculatorTests
     }
 
     [Fact]
-    public void Divide_Should_Throw_When_Y_Is_Zero()
+    public void Divide_ShouldThrow_WhenYIsZero()
     {
         //Arrange
         double x = 5;
