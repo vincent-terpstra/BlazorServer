@@ -12,7 +12,7 @@ namespace DataAccess.Tests;
 public class UserServiceTests
 {
     //HACK - because I am using stored procedures with dynamic parameters 
-    //It_Any matches any type
+    //IsAny matches any type
     public It.IsAnyType IsAny => It.IsAny<It.IsAnyType>();
     
     public UserServiceTests()
