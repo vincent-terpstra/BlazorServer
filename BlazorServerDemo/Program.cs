@@ -9,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>(
+    //Note - this is created with dependency injection and default arguments
+    //(service) => new SqlDataAccess(service.GetService<IConfiguration>()!)
+);
 builder.Services.AddSingleton<IUserService, UserService>();
 
 var app = builder.Build();

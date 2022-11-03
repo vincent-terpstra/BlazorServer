@@ -9,7 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>(
+    //Note - this is created with dependency injection and default arguments
+    //(service) => new SqlDataAccess(service.GetService<IConfiguration>()!)
+    );
 builder.Services.AddSingleton<IUserService, UserService>();
 
 var app = builder.Build();
