@@ -1,38 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DataAccess.DbAccess;
 using DataAccess.Models;
 using DataAccess.Services;
+using Moq;
 using Xunit;
 
 namespace DataAccess.Tests;
 
 public class UserServiceTests
 {
+    //HACK - because I am using stored procedures with dynamic parameters 
+    //It_Any matches any type
+    public It.IsAnyType IsAny => It.IsAny<It.IsAnyType>();
+    
     public UserServiceTests()
     {
-        //TODO replace this with a moq
-        ISqlDataAccess sqlDataAccess =
-            new SqlDataAccess("Host=localhost:30432;Database=minimaldb;User ID=vince;Password=pwd;");
-        _service = new UserService(sqlDataAccess);
+        _mock = new Mock<ISqlDataAccess>();
+        _userservice = new UserService(_mock.Object);
     }
-    private readonly IUserService _service;
-    
-    [Fact]
-    public void AddPersonToList()
-    {
+    private readonly IUserService _userservice;
+    private Mock<ISqlDataAccess> _mock;
 
+    [Fact]
+    public async Task GetUsersAsync_ShouldReturnUsers()
+    {
+        //Arrange
+        IEnumerable<PersonModel> models = new[]
+        {
+            new PersonModel()
+            {
+                firstname = "first person",
+                lastname = "last"
+            },
+            new PersonModel()
+            {
+                firstname = "second person",
+                lastname = "last"
+            }
+        };
+        var setup = _mock.Setup(
+            x =>  x.LoadDataAsync<PersonModel, dynamic>("user_getall", IsAny))
+                .Returns(Task.FromResult(models));
+        
+        //Act
+        IEnumerable<PersonModel> actual = await _userservice.GetUsersAsync();
+        
+        //Assert
+        Assert.True(actual != null);
+        Assert.Equal(models, actual);
+        
+        _mock.Verify(x=> x.LoadDataAsync<PersonModel,dynamic>("user_getall", IsAny), Times.Once);
+    }
+
+    [Fact]
+    public async Task AddPerson_Success()
+    {
+        //Arrange
         PersonModel person = new PersonModel()
         {
             firstname = "First",
             lastname = "last"
         };
-
-        List<PersonModel> people = new();
-        people.Add(person);
-
-        Assert.True(people.Count == 1);
-        Assert.Contains<PersonModel>(person, people);
+        _mock.Setup(x => x.SaveDataAsync("user_create", IsAny));
+        
+        //Act
+        await _userservice.InsertUserAsync(person);
+        
+        //Assert
+        _mock.Verify(x => x.SaveDataAsync("user_create", IsAny), Times.Once);
     }
     
     [Theory]
@@ -40,13 +77,17 @@ public class UserServiceTests
     [InlineData("", "Terpstra", "FirstName")]
     public void AddPersonToList_ShouldFail(string firstname, string lastname, string argument)
     {
-
+        //Arrange
         PersonModel person = new PersonModel()
         {
             firstname = firstname,
             lastname = lastname
         };
-
-        Assert.ThrowsAsync<ArgumentException>(argument, () => _service.InsertUserAsync(person));
+        _mock.Setup(x => x.SaveDataAsync("user_create", IsAny));
+        //Act
+        
+        //Assert
+        Assert.ThrowsAsync<ArgumentException>(argument, () => _userservice.InsertUserAsync(person));
+        _mock.Verify(x => x.SaveDataAsync("user_create", IsAny), Times.Never);
     }
 }
