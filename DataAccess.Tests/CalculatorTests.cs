@@ -27,6 +27,7 @@ public class CalculatorTests
     [InlineData(2, 3, 5)]
     [InlineData(double.MaxValue, 5, double.MaxValue)]
     [InlineData(double.NaN, double.NaN, double.NaN)]
+    [InlineData(double.MaxValue, double.MinValue, 0)]
     public void Add_ValuesShouldCalculate(double x, double y, double expected)
     {
         //Arrange
@@ -42,6 +43,7 @@ public class CalculatorTests
     [InlineData(2, -3, -6)]
     [InlineData(double.PositiveInfinity, -1, double.NegativeInfinity)]
     [InlineData(double.NaN, double.NaN, double.NaN)]
+    [InlineData(double.NaN, 0, double.NaN)]
     public void Multiply_ValuesShouldCalculate(double x, double y, double expected)
     {
         //Arrange
