@@ -1,0 +1,12 @@
+﻿<h3>Counter</h3>
+<p>Current count: @count</p>
+<button class="btn btn-primary" @onclick="CountClick">Click Me</button>
+@code {
+    int count = 0;
+
+    private void CountClick()
+    {
+        count++;
+    }
+
+}

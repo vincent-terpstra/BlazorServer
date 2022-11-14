@@ -1,0 +1,64 @@
+﻿<h3>@Name's task list</h3>
+
+@if (Tasks.Count > 0)
+{
+    <div class="progress my-2">
+        <div class="progress-bar" role="progressbar" style="width:@(PercentDone)%" aria-valuemin="0" aria-valuemax="100">@(PercentDone)%</div>
+    </div>
+}
+
+<EditForm Model="@NewTask" OnValidSubmit="AddTask">
+    <div class="form-group row">
+        <div class="col-sm-12 col-md-6 my-1"><InputText class="form-control" @bind-Value="NewTask.Task"/></div>
+        <div class="col-sm-12 col-md-6 my-1"><button class="btn btn-outline-primary" type="submit">Add Task</button></div>
+    </div>
+</EditForm>
+
+<ul class="list-group">
+    @foreach (var task in Tasks)
+    {
+        @if (task.IsComplete)
+        {
+            <li class="list-group-item list-group-item-success my-1" 
+                @onclick="() => task.IsComplete = !task.IsComplete">
+                <del>@task.Task</del>
+            </li>
+        }
+        else
+        {
+            <li class="list-group-item list-group-item-secondary my-1" 
+                @onclick="() => task.IsComplete = !task.IsComplete">
+                @task.Task
+            </li>
+        }
+    }
+</ul>
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+    
+    public List<TaskModel> Tasks = new();
+
+    public TaskModel NewTask = new();
+
+    private int PercentDone => Tasks.Count(x => x.IsComplete) * 100 / Tasks.Count;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private void AddTask()
+    {
+        if(NewTask.Task.Length > 0)
+            Tasks.Add(NewTask);
+        NewTask = new();
+    }
+
+    protected void CompleteTask(TaskModel task)
+    {
+        task.IsComplete = true;
+    }
+
+}
