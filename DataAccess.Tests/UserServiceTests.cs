@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataAccess.DbAccess;
-using DataAccess.Models;
 using DataAccess.Services;
+using Domain.Models;
 using Moq;
 using Xunit;
 

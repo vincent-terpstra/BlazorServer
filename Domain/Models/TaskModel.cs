@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Models;
+﻿namespace Domain.Models;
 
 public class TaskModel
 {

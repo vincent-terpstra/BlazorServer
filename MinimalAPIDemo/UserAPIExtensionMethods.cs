@@ -1,10 +1,10 @@
 ﻿using Autofac.Core;
 
-namespace MnimalAPIDemo;
+namespace MinimalAPIDemo;
 
 public static class WebAppExtensionMethods
 {
-    public static void ConfigureApi(this WebApplication application)
+    public static void ConfigureUsersApi(this WebApplication application)
     {
         application.MapGet("/Users", GetUsers);
         application.MapGet("/Users/{id}", GetUser);

@@ -1,5 +1,5 @@
 ﻿using DataAccess.DbAccess;
-using DataAccess.Models;
+using Domain.Models;
 
 namespace DataAccess.Services;
 

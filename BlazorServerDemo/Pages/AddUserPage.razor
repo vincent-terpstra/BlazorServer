@@ -1,6 +1,5 @@
 ﻿@page "/AddUserPage"
 @inject IUserService _access
-@using DataAccess.Models
 
 <div class="h3">@_message</div>
 <EditForm Model="@_newperson" OnValidSubmit="@SubmitPersonAsync">
