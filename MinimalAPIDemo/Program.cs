@@ -1,7 +1,9 @@
 using Application.Abstractions;
+using Application.Posts.Commands;
 using DataAccess;
 using DataAccess.DbAccess;
 using DataAccess.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MinimalAPIDemo;
 
@@ -24,6 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(
 
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IUserService, UserServiceDb>();
+builder.Services.AddMediatR(typeof(CreatePost));
 
 var app = builder.Build();
 
