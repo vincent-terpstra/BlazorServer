@@ -1,19 +1,20 @@
 ﻿using Autofac.Core;
+using MinimalAPIDemo.Abstractions;
 
 namespace MinimalAPIDemo;
 
-public static class UserAPI
+public class UserEndpointDefinitions : IEndpointDefinition
 {
-    public static void MapUsersEndpoints(this WebApplication application)
+    public void RegisterEndpoints(WebApplication app)
     {
-        application.MapGet("/Users", GetUsers);
-        application.MapGet("/Users/{id}", GetUser);
-        application.MapPut("/Users", CreateUser);
-        application.MapPost("/Users", UpdateUser);
-        application.MapDelete("/Users", DeleteUser);
+        app.MapGet("/users", GetUsers);
+        app.MapGet("/users/{id}", GetUser);
+        app.MapPut("/users", CreateUser);
+        app.MapPost("/users", UpdateUser);
+        app.MapDelete("/users", DeleteUser);
     }
 
-    private static async Task<IResult> GetUsers(IUserService data)
+    private async Task<IResult> GetUsers(IUserService data)
     {
         try
         {
@@ -25,7 +26,7 @@ public static class UserAPI
         }
     }
 
-    private static async Task<IResult> GetUser(int id, IUserService service)
+    private async Task<IResult> GetUser(int id, IUserService service)
     {
         try
         {
@@ -40,7 +41,7 @@ public static class UserAPI
         }
     }
 
-    private static async Task<IResult> CreateUser(PersonModel model, IUserService service)
+    private async Task<IResult> CreateUser(PersonModel model, IUserService service)
     {
         try
         {
@@ -52,7 +53,7 @@ public static class UserAPI
             return Results.Problem(ex.Message);
         }
     }
-    private static async Task<IResult> UpdateUser(PersonModel person, IUserService service)
+    private async Task<IResult> UpdateUser(PersonModel person, IUserService service)
     {
         try
         {
@@ -65,7 +66,7 @@ public static class UserAPI
         }
     }
 
-    private static async Task<IResult> DeleteUser(int id, IUserService service)
+    private async Task<IResult> DeleteUser(int id, IUserService service)
     {
         try
         {
@@ -77,4 +78,6 @@ public static class UserAPI
             return Results.Problem(ex.Message);
         }
     }
+
+    
 }

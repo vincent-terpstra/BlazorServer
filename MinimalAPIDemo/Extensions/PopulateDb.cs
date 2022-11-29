@@ -2,7 +2,7 @@
 
 namespace MinimalAPIDemo;
 
-public static class PopulateDbExtensionMethods
+public static class PopulateDb
 {
     public static void PopulateDbPosts(this IApplicationBuilder app)
     {

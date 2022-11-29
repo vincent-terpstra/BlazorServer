@@ -3,12 +3,13 @@ using Application.Posts.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
+using MinimalAPIDemo.Abstractions;
 
 namespace MinimalAPIDemo;
 
-public static class PostAPI
+public class PostEndpointDefinitions : IEndpointDefinition
 {
-    public static void MapPostEndpoints(this WebApplication app)
+    public void RegisterEndpoints(WebApplication app)
     {
         app.MapGet("/api/posts/{id}", GetPostById)
             .WithName(nameof(GetPostById))
@@ -27,7 +28,7 @@ public static class PostAPI
         app.MapPut("/api/posts/{id}", UpdatePost);
     }
 
-    private static async Task<IResult> UpdatePost(int id, UpdatePost updatePost, IMediator mediator)
+    private async Task<IResult> UpdatePost(int id, UpdatePost updatePost, IMediator mediator)
     {
         try
         {
@@ -41,12 +42,12 @@ public static class PostAPI
         
     }
 
-    private static async Task<IResult> GetAllPosts(IMediator mediator)
+    private async Task<IResult> GetAllPosts(IMediator mediator)
     {
         return Results.Ok(await mediator.Send(new GetAllPosts()));
     }
 
-    private static async Task<IResult> DeletePostById(int id, IMediator mediator)
+    private async Task<IResult> DeletePostById(int id, IMediator mediator)
     {
         try
         {
@@ -60,7 +61,7 @@ public static class PostAPI
         }
     }
 
-    private static async Task<IResult> CreatePost([FromBody]CreatePost createPost, IMediator mediator)
+    private async Task<IResult> CreatePost([FromBody]CreatePost createPost, IMediator mediator)
     {
         try
         {
@@ -73,11 +74,13 @@ public static class PostAPI
         }
     }
 
-    private static async Task<IResult> GetPostById(int id, IMediator mediator)
+    private async Task<IResult> GetPostById(int id, IMediator mediator)
     {
         var getPost = new GetPostById() {postId = id};
         var post = await mediator.Send(getPost);
         
         return post is null ? Results.NotFound() : Results.Ok(post);
     }
+
+    
 }
