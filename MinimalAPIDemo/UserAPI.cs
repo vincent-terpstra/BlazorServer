@@ -2,9 +2,9 @@
 
 namespace MinimalAPIDemo;
 
-public static class WebAppExtensionMethods
+public static class UserAPI
 {
-    public static void ConfigureUsersApi(this WebApplication application)
+    public static void MapUsersEndpoints(this WebApplication application)
     {
         application.MapGet("/Users", GetUsers);
         application.MapGet("/Users/{id}", GetUser);

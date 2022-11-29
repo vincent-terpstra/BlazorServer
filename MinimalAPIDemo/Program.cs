@@ -43,8 +43,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.ConfigureUsersApi();
+app.MapUsersEndpoints();
+app.MapPostEndpoints();
 
-app.MapGet("/posts", async (IPostRepository repo) => await repo.GetAllPosts());
 
 app.Run();
