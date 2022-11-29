@@ -19,15 +19,17 @@ public class UserService : IUserService
         => (await _db.LoadDataAsync<PersonModel, dynamic>("user_get", new { id }))
         .FirstOrDefault();
 
-    public async Task InsertUserAsync(PersonModel person)
+    public async Task<PersonModel> InsertUserAsync(PersonModel person)
     {
-        if (string.IsNullOrWhiteSpace(person.firstname))
+        if (string.IsNullOrWhiteSpace(person.Firstname))
             throw new ArgumentException("Person requires a first name", "FirstName");
         
-        if (string.IsNullOrWhiteSpace(person.lastname))
+        if (string.IsNullOrWhiteSpace(person.Lastname))
             throw new ArgumentException("Person requires a last name", "LastName");
         
-        await _db.SaveDataAsync("user_create", new {person.firstname, person.lastname});
+        await _db.SaveDataAsync("user_create", new {firstname = person.Firstname, lastname = person.Lastname});
+        //HACK this doesn't update the Id of the person inserted
+        return person;
     }
         
     

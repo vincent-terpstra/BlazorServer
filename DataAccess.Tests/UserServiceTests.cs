@@ -31,13 +31,13 @@ public class UserServiceTests
         {
             new PersonModel()
             {
-                firstname = "first person",
-                lastname = "last"
+                Firstname = "first person",
+                Lastname = "last"
             },
             new PersonModel()
             {
-                firstname = "second person",
-                lastname = "last"
+                Firstname = "second person",
+                Lastname = "last"
             }
         };
         var setup = _mock.Setup(
@@ -60,8 +60,8 @@ public class UserServiceTests
         //Arrange
         PersonModel person = new PersonModel()
         {
-            firstname = "First",
-            lastname = "last"
+            Firstname = "First",
+            Lastname = "last"
         };
         _mock.Setup(x => x.SaveDataAsync("user_create", IsAny));
         
@@ -80,8 +80,8 @@ public class UserServiceTests
         //Arrange
         PersonModel person = new PersonModel()
         {
-            firstname = firstname,
-            lastname = lastname
+            Firstname = firstname,
+            Lastname = lastname
         };
         _mock.Setup(x => x.SaveDataAsync("user_create", IsAny));
         //Act
