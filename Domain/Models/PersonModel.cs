@@ -4,6 +4,7 @@ namespace Domain.Models;
 
 public class PersonModel
 {
+    [Key]
     public int Id { get; set; }
 
     [Required]
