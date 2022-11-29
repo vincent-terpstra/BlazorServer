@@ -44,7 +44,7 @@ public static class WebAppExtensionMethods
     {
         try
         {
-            await service.InsertUserAsync(new PersonModel() {Firstname = model.Firstname, Lastname = model.Lastname});
+            await service.InsertUserAsync(new PersonModel() {Firstname = model.Firstname, Lastname = model.Lastname, Email = model.Email});
             return Results.Ok();
         }
         catch (Exception ex)
