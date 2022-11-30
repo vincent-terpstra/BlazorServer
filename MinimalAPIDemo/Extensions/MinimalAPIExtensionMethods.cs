@@ -66,7 +66,7 @@ public static class MinimalAPIExtensionMethods
             catch (Exception ex)
             {
                 //Bad Request
-                ctx.Response.StatusCode = 400;
+                ctx.Response.StatusCode = 500;
                 ctx.Response.Headers["message"] = ex.Message;
                 await ctx.Response.WriteAsync(ex.Message);
             }
