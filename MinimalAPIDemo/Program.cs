@@ -17,6 +17,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.RegisterExceptionHandling();
 app.RegisterEndpoints();
 
 app.Run();

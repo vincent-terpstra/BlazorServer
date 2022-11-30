@@ -1,9 +1,11 @@
-﻿using Application.Abstractions;
+﻿using System.Text;
+using Application.Abstractions;
 using Application.Posts.Commands;
 using DataAccess;
 using DataAccess.DbAccess;
 using DataAccess.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using MinimalAPIDemo.Abstractions;
 
@@ -44,5 +46,30 @@ public static class MinimalAPIExtensionMethods
         {
             endpoint.RegisterEndpoints(app);
         }
+    }
+
+    public static void RegisterExceptionHandling(this WebApplication app)
+    {
+        app.Use(async (ctx, next) =>
+        {
+            try
+            {
+                await next();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                //Not Found
+                ctx.Response.StatusCode = 404;
+                ctx.Response.Headers["message"] = ex.Message;
+                await ctx.Response.WriteAsync(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                //Bad Request
+                ctx.Response.StatusCode = 400;
+                ctx.Response.Headers["message"] = ex.Message;
+                await ctx.Response.WriteAsync(ex.Message);
+            }
+        });
     }
 }
