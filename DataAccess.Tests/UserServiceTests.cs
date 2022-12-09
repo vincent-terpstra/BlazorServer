@@ -18,7 +18,7 @@ public class UserServiceTests
     public UserServiceTests()
     {
         _mock = new Mock<ISqlDataAccess>();
-        _userservice = new UserService(_mock.Object);
+        _userservice = new UserServiceDapper(_mock.Object);
     }
     private readonly IUserService _userservice;
     private Mock<ISqlDataAccess> _mock;

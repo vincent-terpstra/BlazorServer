@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using DataAccess.DbAccess;
+using DataAccess;
 using DataAccess.Services;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,11 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>(
-    //Note - this is created with dependency injection and default arguments
-    //(service) => new SqlDataAccess(service.GetService<IConfiguration>()!)
+builder.Services.AddScoped<IUserService, UserServiceDb>();
+
+builder.Services.AddDbContext<AppDbContext>(
+    opt => opt.UseInMemoryDatabase("InMem")
 );
-builder.Services.AddSingleton<IUserService, UserService>();
 
 var app = builder.Build();
 
@@ -23,6 +22,13 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else
+{
+    using var scope = app.Services.CreateScope();
+     var users = scope.ServiceProvider.GetRequiredService<IUserService>();
+     users.PopulateDbUsers();
+    
 }
 
 app.UseHttpsRedirection();

@@ -3,11 +3,11 @@ using Domain.Models;
 
 namespace DataAccess.Services;
 
-public class UserService : IUserService
+public class UserServiceDapper : IUserService
 {
     private readonly ISqlDataAccess _db;
 
-    public UserService(ISqlDataAccess db)
+    public UserServiceDapper(ISqlDataAccess db)
     {
         _db = db;
     }

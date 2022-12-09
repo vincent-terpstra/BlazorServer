@@ -1,11 +1,9 @@
-﻿using System.Text;
-using Application.Abstractions;
+﻿using Application.Abstractions;
 using Application.Posts.Commands;
 using DataAccess;
 using DataAccess.DbAccess;
 using DataAccess.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using MinimalAPIDemo.Abstractions;
 

@@ -1,3 +1,6 @@
+using Application.Abstractions;
+using DataAccess;
+using DataAccess.Repositories;
 using MinimalAPIDemo;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +12,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.PopulateDbPosts();
-    app.PopulateDbUsers();
+
+    var scope = app.Services.CreateScope();
+    var users = scope.ServiceProvider.GetRequiredService<IUserService>();
+    users.PopulateDbUsers();
+
+    var posts = scope.ServiceProvider.GetRequiredService<IPostRepository>();
+    posts.PopulateDbPosts();
+
 }
 
 app.UseHttpsRedirection();
