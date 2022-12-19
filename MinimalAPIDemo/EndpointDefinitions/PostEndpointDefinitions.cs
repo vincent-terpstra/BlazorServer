@@ -22,7 +22,8 @@ public class PostEndpointDefinitions : IEndpointDefinition
 
         app.MapDelete("/api/posts/{id}", DeletePostById);
 
-        app.MapGet("/api/posts", GetAllPosts);
+        app.MapGet("/api/posts", GetAllPosts)
+            .Produces<List<Post>>();
 
         app.MapPut("/api/posts/{id}", UpdatePost);
     }
