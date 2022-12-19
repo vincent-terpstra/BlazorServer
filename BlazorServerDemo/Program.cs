@@ -26,9 +26,8 @@ if (!app.Environment.IsDevelopment())
 else
 {
     using var scope = app.Services.CreateScope();
-     var users = scope.ServiceProvider.GetRequiredService<IUserService>();
-     users.PopulateDbUsers();
-    
+    var users = scope.ServiceProvider.GetRequiredService<IUserService>();
+    users.PopulateDbUsers();
 }
 
 app.UseHttpsRedirection();
