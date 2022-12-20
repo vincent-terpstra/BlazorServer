@@ -1,0 +1,54 @@
+﻿@inject NavigationManager _manager
+
+<div class="container" style="white-space: nowrap">
+    <NavLink class="nav-link" href="" Match="NavLinkMatch.All" style="display: inline-block">Home</NavLink>
+    @foreach (var route in Routes)
+    {
+        <span class="oi oi-chevron-right" aria-hidden="true" style="display: inline-block"/>
+        <NavLink class="nav-link" href=@(route.Path) style="display: inline-block">@route.Route</NavLink>
+    }
+    
+</div>
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        _manager.LocationChanged += UpdatePath;
+        SetPath();
+    }
+
+    private void UpdatePath(object? sender, LocationChangedEventArgs e)
+    {
+        SetPath();
+        StateHasChanged();
+    }
+
+    private void SetPath()
+    {
+        if (!CurrentPath.StartsWith(_manager.Uri))
+        {
+            CurrentPath = _manager.Uri;
+            var subString = CurrentPath.Substring(_manager.BaseUri.Length);
+            Routes.Clear();
+
+            string[] routes = subString.Split('/');
+
+            string path = string.Empty;
+
+            foreach (var s in routes)
+            {
+                path += s;
+                Routes.Add((s, path));
+                path += '/';
+            }
+
+
+        }
+    }
+
+    string CurrentPath = string.Empty;
+    List<(string Route, string Path)> Routes = new();
+
+}
