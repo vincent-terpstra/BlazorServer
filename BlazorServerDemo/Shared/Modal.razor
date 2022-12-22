@@ -1,0 +1,55 @@
+﻿@if (Show)
+{
+    <div class="dialog-container">
+        <div class="dialog">
+            <div class="dialog-title">
+                <h2>@Title</h2>
+            </div>
+
+            <div class="dialog-body">
+                @ChildContent
+            </div>
+
+            <div class="dialog-buttons">
+                <button class="btn btn-secondary mr-auto" @onclick="CancelClick"> @CancelText</button>
+                <button class="btn btn-success ms-auto" @onclick="ConfirmClick" > @ConfirmText</button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public bool Show { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string CancelText { get; set; } = "Cancel";
+
+    [Parameter]
+    public string ConfirmText { get; set; } = "Confirm";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+
+    private async void CancelClick() 
+    {
+        Show = false;
+        await OnCancel.InvokeAsync();
+    }
+    
+    private async void ConfirmClick() 
+    {
+        Show = false;
+        await OnConfirm.InvokeAsync();
+    }
+}
