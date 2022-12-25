@@ -1,0 +1,23 @@
+﻿@page "/Binding"
+
+<h3>BindingAcrossComponents</h3>
+
+<h2>Parent Page</h2>
+
+<p>Parent Message: <b>@parentMessage</b></p>
+<b>
+    <button @onclick="ChangeValue">Change from Parent</button>
+    
+    <NestedChild @bind-ChildMessage="parentMessage"/>
+</b>
+
+
+@code
+{
+    private string parentMessage = "Initial value from Parent";
+
+    private void ChangeValue()
+    {
+        parentMessage = $"Set in Parent {DateTime.Now}";
+    }
+}

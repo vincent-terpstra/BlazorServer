@@ -1,0 +1,23 @@
+﻿<div class="border rounded m-1 p-1">
+    <h2>Grand Child Component</h2>
+    
+    <p>Grand Child Message: <b>@GrandChildMessage</b></p>
+    
+    <p>
+        <button @onclick="ChangeValue">Change from Grand Child</button>
+    </p>
+</div>
+@code {
+    [Parameter]
+    public string? GrandChildMessage { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> GrandChildMessageChanged { get; set; }
+
+
+    private async Task ChangeValue()
+    {
+        await GrandChildMessageChanged.InvokeAsync(
+            $"Set in Grand Child {DateTime.Now}");
+    }
+}
