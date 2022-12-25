@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 
-namespace BlazorServerDemo.Shared;
+namespace BlazorServerDemo.Shared.Components;
 
 public partial class MyPageLock
 {
