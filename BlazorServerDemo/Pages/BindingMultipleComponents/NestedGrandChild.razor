@@ -17,7 +17,6 @@
 
     private async Task ChangeValue()
     {
-        await GrandChildMessageChanged.InvokeAsync(
-            $"Set in Grand Child {DateTime.Now}");
+        await GrandChildMessageChanged.InvokeAsync($"Set in Grand Child {DateTime.Now}");
     }
 }

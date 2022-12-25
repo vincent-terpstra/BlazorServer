@@ -1,4 +1,4 @@
-﻿using BlazorServerDemo.Shared;
+﻿using BlazorServerDemo.Shared.Components;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorServerDemo.Pages;

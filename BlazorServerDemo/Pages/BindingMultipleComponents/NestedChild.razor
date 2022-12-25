@@ -24,7 +24,6 @@
 
     private async Task ChangeValue()
     {
-        await ChildMessageChanged.InvokeAsync(
-            $"Set in Child {DateTime.Now}");
+        await ChildMessageChanged.InvokeAsync($"Set in Child {DateTime.Now}");
     }
 }
