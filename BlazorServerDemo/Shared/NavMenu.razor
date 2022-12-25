@@ -9,21 +9,55 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
-        <div class="nav-item px-3">
+        <div class="nav-item">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="Users">
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/Users">
                 <span class="oi oi-people" aria-hidden="true"></span> View Users
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="Users/New">
-                <span class="oi oi-person" aria-hidden="true"></span> Add Users
+        <VisibleOnRoute VisibleRoutes="Users">
+        <div class="nav-item px-1">
+            <NavLink class="nav-link" href="/Users/Create">
+                <span class="oi oi-person" aria-hidden="true"></span> Create Users
             </NavLink>
         </div>
+        <div class="nav-item px-1">
+            <NavLink class="nav-link" href="/Users/Read">
+                <span class="oi oi-person" aria-hidden="true"></span> Read Users
+            </NavLink>
+        </div>
+        <div class="nav-item px-1">
+            <NavLink class="nav-link" href="/Users/Update">
+                <span class="oi oi-person" aria-hidden="true"></span> Update Users
+            </NavLink>
+        </div>
+        <div class="nav-item px-1">
+            <NavLink class="nav-link" href="/Users/Delete">
+                <span class="oi oi-person" aria-hidden="true"></span> Delete Users
+            </NavLink>
+        </div>
+        </VisibleOnRoute>
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/Binding">
+                <span class="oi oi-battery-empty" aria-hidden="true"></span> Demo Multiple bindings
+            </NavLink>
+        </div>
+        <VisibleOnRoute VisibleRoutes="Binding">
+            <div class="nav-item px-1">
+                <NavLink class="nav-link" href="/Binding/DemoOne">
+                    <span class="oi oi-battery-empty" aria-hidden="true"></span> Demo One
+                </NavLink>
+            </div>
+            <div class="nav-item px-1">
+                <NavLink class="nav-link" href="/Binding/DemoTwo">
+                    <span class="oi oi-battery-empty" aria-hidden="true"></span> Demo Two
+                </NavLink>
+            </div>
+        </VisibleOnRoute>
     </nav>
 </div>
 

@@ -1,0 +1,34 @@
+﻿@inject NavigationManager _manager
+
+@if (RenderRoutes)
+{
+    @ChildContent
+}
+
+
+@code {
+
+    protected override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        _manager.LocationChanged += UpdateVisibility;
+        UpdateVisibility(null, null);
+        return Task.CompletedTask;
+    }
+
+    private void UpdateVisibility(object? sender, LocationChangedEventArgs e)
+    {
+        RenderRoutes = _manager.Uri.Substring(_manager.BaseUri.Length).StartsWith(VisibleRoutes);
+        StateHasChanged();
+    }
+
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool RenderRoutes { get; set; } = true;
+
+    [Parameter]
+    public string VisibleRoutes { get; set; } = "";
+
+}
