@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Components.Routing;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 
-namespace BlazorServerDemo.Shared;
+namespace BlazorServerDemo.Shared.Components;
 
 public partial class BreadCrumbComponent
 {
+    [Inject] private NavigationManager Manager { get; set; }
+
     protected override void OnInitialized()
     {
-        _manager.LocationChanged += UpdatePath;
+        Manager.LocationChanged += UpdatePath;
         SetPath();
     }
 
@@ -18,10 +21,10 @@ public partial class BreadCrumbComponent
 
     private void SetPath()
     {
-        if (!CurrentPath.StartsWith(_manager.Uri))
+        if (!CurrentPath.StartsWith(Manager.Uri))
         {
-            CurrentPath = _manager.Uri;
-            var subString = CurrentPath.Substring(_manager.BaseUri.Length);
+            CurrentPath = Manager.Uri;
+            var subString = CurrentPath.Substring(Manager.BaseUri.Length);
             Routes.Clear();
 
             string[] routes = subString.Split('/');
