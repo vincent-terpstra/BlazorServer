@@ -1,0 +1,28 @@
+﻿@inherits ErrorBoundaryBase
+
+<h3>My Custom Error Block</h3>
+@ChildContent
+
+@if (CurrentException is not null)
+{
+    @ErrorContent?.Invoke(CurrentException)
+    
+    <p>@_type.ToString()</p>
+    <p>@CurrentException.Message</p>
+}
+
+
+@code {
+
+    [Inject]
+    ILogger<CustomErrorContent> Logger { get; set; }
+    
+    private Type _type;
+
+    protected override Task OnErrorAsync(Exception exception)
+    {
+        _type = exception.GetType();
+        Logger.LogInformation("An Exception has occurred {Ex}", exception);
+        return Task.CompletedTask;
+    }
+}

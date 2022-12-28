@@ -15,5 +15,23 @@ Welcome to your new app.
     </div>
 </div>
 <div class="col-lg-4">
-    <Counter/>
+    <CustomErrorContent>
+        <ChildContent>
+            <Counter/>
+        </ChildContent>
+        <ErrorContent>
+            <p class="errorUi">Counter broke reload page to fix</p>
+        </ErrorContent>
+    </CustomErrorContent>
+    
+    <ErrorBoundary>
+        <ChildContent>
+            <Counter/>
+        </ChildContent>
+        <ErrorContent>
+            <p class="errorUi">Counter broke reload page to fix</p>
+            <p>@context.Message</p>
+        </ErrorContent>
+    </ErrorBoundary>
+    
 </div>

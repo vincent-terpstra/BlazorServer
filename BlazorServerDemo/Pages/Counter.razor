@@ -1,4 +1,5 @@
-﻿<h3>Counter</h3>
+﻿@using System.Diagnostics
+<h3>Counter</h3>
 <p>Current count: @count</p>
 <button class="btn btn-primary" @onclick="CountClick">Click Me</button>
 @code {
@@ -7,6 +8,9 @@
     private void CountClick()
     {
         count++;
+
+        if (count > 5) //HACK
+            throw new UnreachableException("Paradox");
     }
 
 }
