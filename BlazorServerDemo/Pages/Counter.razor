@@ -1,8 +1,16 @@
 ﻿@using System.Diagnostics
-<h3>Counter</h3>
+<h3>Counter V @currentCounter</h3>
 <p>Current count: @count</p>
 <button class="btn btn-primary" @onclick="CountClick">Click Me</button>
 @code {
+
+    static int version;
+    public Counter()
+    {
+        currentCounter = ++version;
+    }
+    
+    int currentCounter;
     int count = 0;
 
     private void CountClick()
