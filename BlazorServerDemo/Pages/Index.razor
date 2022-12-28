@@ -17,16 +17,20 @@ Welcome to your new app.
 <div class="col-lg-4">
     <CustomErrorContent>
         <ChildContent>
-            <Counter/>
+            <Counter @bind-TotalCount="@parentCount"/>
         </ChildContent>
         <ErrorContent>
             <p class="errorUi">Counter broke reload page to fix</p>
         </ErrorContent>
     </CustomErrorContent>
+    @code
+    {
+        int parentCount = 42;
+    }
     
     <ErrorBoundary>
         <ChildContent>
-            <Counter/>
+            <Counter @bind-TotalCount="@parentCount"/>
         </ChildContent>
         <ErrorContent>
             <p class="errorUi">Counter broke reload page to fix</p>
