@@ -1,0 +1,12 @@
+﻿
+<button @onclick="@CreateError">Generate Error</button>
+
+@code {
+    [CascadingParameter]
+    private BlazorServerDemo.Pages.Index? Index { get; set; }
+
+    private void CreateError()
+    {
+        Index?.SetErrorMessage("Error Generated");
+    }
+}

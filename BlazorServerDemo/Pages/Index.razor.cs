@@ -12,4 +12,14 @@ public partial class Index
     {
         UnsavedChanges?.SetUnSavedChanges(true);
     }
+    
+    [Parameter]
+    public string? ErrorMessage { get; set; }
+    
+
+    public void SetErrorMessage(string errorMessage)
+    {
+        ErrorMessage = errorMessage;
+        StateHasChanged();
+    }
 }

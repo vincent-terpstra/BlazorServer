@@ -1,0 +1,21 @@
+﻿<Modal Title="An Error has occured" Show="@HasErrormessage" OnConfirm="ClearError" >
+    <p>
+        @ErrorMessage
+    </p>
+</Modal>
+
+
+@code {
+    private bool HasErrormessage => !string.IsNullOrWhiteSpace(ErrorMessage);
+
+    [Parameter]
+    public string? ErrorMessage { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> ErrorMessageChanged { get; set; }
+
+    private async void ClearError()
+    {
+        await ErrorMessageChanged.InvokeAsync(null);
+    }
+}

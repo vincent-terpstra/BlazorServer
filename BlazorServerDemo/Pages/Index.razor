@@ -14,6 +14,12 @@ Welcome to your new app.
         <TaskList Name="Tim"/>
     </div>
 </div>
+<CascadingValue Value="@this">
+    <GenerateError></GenerateError>
+</CascadingValue>
+
+<p>@ErrorMessage</p>
+<ErrorPopup @bind-ErrorMessage="ErrorMessage"></ErrorPopup>
 <div class="col-lg-4">
     <CustomErrorContent>
         <ChildContent>
@@ -23,11 +29,12 @@ Welcome to your new app.
             <p class="errorUi">Counter broke reload page to fix</p>
         </ErrorContent>
     </CustomErrorContent>
+
     @code
     {
         int parentCount = 42;
     }
-    
+
     <ErrorBoundary>
         <ChildContent>
             <Counter @bind-TotalCount="@parentCount"/>
@@ -37,5 +44,5 @@ Welcome to your new app.
             <p>@context.Message</p>
         </ErrorContent>
     </ErrorBoundary>
-    
+
 </div>
