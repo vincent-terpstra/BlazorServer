@@ -1,0 +1,74 @@
+﻿@page "/Forms"
+@using System.Drawing
+<h3>FormDemo</h3>
+
+    @*
+    <div class="form-group row">
+        <div class="col-sm-12 col-md-6 my-1"><InputText class="form-control" @bind-Value="NewTask.Task"/></div>
+        <div class="col-sm-12 col-md-6 my-1"><button class="btn btn-outline-primary" type="submit">Add Task</button></div>
+    </div>*@
+
+<EditForm Model="@model">
+    <DataAnnotationsValidator/>
+    <InputCheckbox id="checkbox" @bind-Value="model.BooleanProp"/>
+    <label for="checkbox">Checkbox Checked</label>
+    <br/>
+    <label for="inputDate">Select Date</label>
+    <InputDate id="inputDate" class="form-control" @bind-Value=model.DateTimeProp ParsingErrorMessage="Must be a date"/>
+    <label for="inputInt">Input Int</label>
+    <InputNumber id="inputInt" class="form-control" @bind-Value="model.IntProp" ParsingErrorMessage="Must be an integer value"/>
+    <label for="inputDecimal">Input Decimal</label>
+    <InputNumber id="inputDecimal" class="form-control" @bind-Value="model.DecimalProp" ParsingErrorMessage="Must be a decimal value"/>
+    <label for="inputString">Input String</label>
+    <InputText id="inputString" class="form-control" @bind-Value="model.StringProp"/>
+    <label for="inputMulti">Input Multiline</label>
+    <InputTextArea id="inputMulti" class="form-control" @bind-Value="model.SomeMultilineProp"/>
+    <label for="selectEnum">Select Enum</label>
+    <InputSelect id="selectEnum" class="form-control" @bind-Value="model.SomeSelectProperty">
+        <option value="Pending">Pending</option>
+        <option value="Active">Active</option>
+        <option value="Suspended">Suspended</option>
+    </InputSelect>
+    <label for="selectStringList">Select String</label>
+    <InputSelect id="selectStringList" class="form-control" @bind-Value="model.SelectedString">
+        @foreach (var str in model.ListProp)
+        {
+            <option value="@str">@str</option>
+        }
+    </InputSelect>
+    
+    <label for="selectColor">Select Color</label>
+    <InputColor @bind-Value="@model.SelectedColor"/>
+</EditForm>
+
+<p> Favourite Color is @model.SelectedColor</p>
+<div style="width:100px;height:100px;background-color: @ColorAsHex"/>
+
+@code {
+
+    SomeModel model = new();
+    
+    class SomeModel
+    {
+        public bool BooleanProp { get; set; }
+        public DateTime? DateTimeProp { get; set; }
+        public int IntProp { get; set; }
+        public decimal DecimalProp { get; set; }
+        public string? StringProp { get; set; }
+        public string? SomeMultilineProp  { get; set; }
+        public SomeStateEnum SomeSelectProperty { get; set; } = SomeStateEnum.Pending;
+        public string? SelectedString { get; set; }
+        public List<string> ListProp { get; set; } = new(){"Hello", "World"};
+        public Color SelectedColor { get; set; }
+    }
+
+    string ColorAsHex => InputColor.ColorToString(model.SelectedColor);
+    public enum SomeStateEnum
+    {
+        Pending,
+        Active,
+        Suspended
+    }
+    
+    
+}
