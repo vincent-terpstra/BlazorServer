@@ -12,6 +12,10 @@
 </InputSelect>
 
 @code {
+    /// <summary>
+    /// Creates a configurable list selector bound by Id
+    /// <InputListDynamic id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country"/>    
+    /// </summary>
     private static readonly TId InitialValue;
 
     [Parameter]
