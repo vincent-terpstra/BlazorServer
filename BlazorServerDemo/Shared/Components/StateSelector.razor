@@ -18,8 +18,8 @@ else
         }
     </InputSelect>*@
     
-    <InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country"/>
-    
+    @*<InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country"/>*@
+    <InputListSelectorV2 id="selectCountry" @bind-Items="@Countries" @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
     @if (SelectedCountry is not null)
     {
         @foreach (var province in SelectedCountry.Provinces)
