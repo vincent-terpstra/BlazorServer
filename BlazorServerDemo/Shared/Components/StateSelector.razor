@@ -1,0 +1,50 @@
+﻿@using BlazorServerDemo.Interfaces
+@using BlazorServerDemo.Models
+@using System.Transactions
+@inject ICountryService _countryService
+
+@if (Countries is null)
+{
+    <p>Loading component</p>
+}
+else
+{
+    <label for="selectCountry">Select Country</label><br/>
+    @*<InputSelect id="selectCountry" @bind-Value="@SelectedCountryId">
+        <option value="" selected disabled hidden>Choose a country</option>
+        @foreach (var country in Countries)
+        {
+            <option value="@country.Id">@country.Name</option>
+        }
+    </InputSelect>*@
+    
+    <InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country">
+        <option value="@context.Id">@context.Name</option>
+    </InputListSelector>
+    
+    @if (SelectedCountry is not null)
+    {
+        @foreach (var province in SelectedCountry.Provinces)
+        {
+            <p>@province.Name</p>
+        }
+    }
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Countries = _countryService.GetCountries();
+    }
+
+    private Guid SelectedCountryId
+    {
+        get => SelectedCountry?.Id ?? Guid.Empty;
+        set => SelectedCountry = Countries.FirstOrDefault(c => c.Id == value);
+    }
+    
+    private Country? SelectedCountry { get; set; }
+    
+    IEnumerable<Country> Countries { get; set; }
+}

@@ -1,3 +1,5 @@
+using BlazorServerDemo.Data;
+using BlazorServerDemo.Interfaces;
 using DataAccess;
 using DataAccess.Services;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IUserService, UserServiceDb>();
+builder.Services.AddSingleton<ICountryService, CountryService>();
 
 builder.Services.AddDbContext<AppDbContext>(
     opt => opt.UseInMemoryDatabase("InMem")
