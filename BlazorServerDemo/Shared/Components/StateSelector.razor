@@ -9,8 +9,7 @@
 }
 else
 {
-    <label for="selectCountry">Select Country</label>
-    <br/>
+    <label for="selectCountry">Select Country</label><br/>
     @*<InputSelect id="selectCountry" @bind-Value="@SelectedCountryId">
         <option value="" selected disabled hidden>Choose a country</option>
         @foreach (var country in Countries)
@@ -18,22 +17,19 @@ else
             <option value="@country.Id">@country.Name</option>
         }
     </InputSelect>*@
-
+    
     @*<InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country"/>*@
-    <InputListSelectorV2 id="selectCountry" Items="@Countries" @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
-    
-    <InputListSelectorV2 id="selectProvince"  TId="Guid" TItem="Province"
-             Items="@(SelectedCountry?.Provinces ?? Enumerable.Empty<Province>())" @bind-SelectedItem="@SelectedProvince"
-             DefaultValue="Select a province"/>
-    
-
-    <p>You selected @SelectedCountry?.Name</p>
-    <p>You selected @SelectedProvince?.Name</p>
-    
+    <InputListSelectorV2 id="selectCountry" @bind-Items="@Countries" @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
+    @if (SelectedCountry is not null)
+    {
+        @foreach (var province in SelectedCountry.Provinces)
+        {
+            <p>@province.Name</p>
+        }
+    }
 }
 
 @code {
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -45,9 +41,8 @@ else
         get => SelectedCountry?.Id ?? Guid.Empty;
         set => SelectedCountry = Countries.FirstOrDefault(c => c.Id == value);
     }
-
+    
     private Country? SelectedCountry { get; set; }
-    private Province? SelectedProvince { get; set; }
-
+    
     IEnumerable<Country> Countries { get; set; }
 }

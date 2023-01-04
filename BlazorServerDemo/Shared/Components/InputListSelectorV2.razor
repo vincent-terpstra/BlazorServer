@@ -7,7 +7,7 @@
     <option value="@InitialValue" selected disabled hidden>@DefaultValue</option>
     @foreach (TItem item in Items)
     {
-        <option value="@GetId(item)">@_nameProperty.GetValue(item)</option>
+        <option value="@GetId(item)">@item.GetType().GetProperty(Name).GetValue(item)</option>
     }
 </InputSelect>
 
@@ -21,7 +21,7 @@
     public string DefaultValue { get; set; } = "Choose";
     
     [Parameter]
-    public IEnumerable<TItem> Items { get; set; } = Enumerable.Empty<TItem>();
+    public IEnumerable<TItem> Items { get; set; } = null!;
     
     [Parameter]
     public TItem? SelectedItem { get; set; }
