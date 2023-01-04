@@ -12,25 +12,18 @@
 </InputSelect>
 
 @code {
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-        var propertyInfos = typeof(TItem)
-            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            .Where(x => x.CanRead).ToList();
-
-        _idProperty = propertyInfos.FirstOrDefault(p => p.Name == Value) 
-                     ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
-        _nameProperty = propertyInfos.FirstOrDefault(p => p.Name == Name) 
-                       ?? throw new ArgumentException($"Unable to access property info for {Name}", nameof(Name));
-    }
-
-    private PropertyInfo? _idProperty;
-    private PropertyInfo? _nameProperty;
+    [Parameter]
+    public IEnumerable<TItem> Items { get; set; } = null!;
     
-    private static readonly TId InitialValue;
+    [Parameter]
+    public TItem? SelectedItem { get; set; }
+    
+    [Parameter]
+    public EventCallback<TItem?> SelectedItemChanged { get; set; }
 
+    [Parameter]
+    public TId SelectedId { get; set; } = InitialValue;
+    
     [Parameter]
     public string Value { get; set; } = "Id";
     
@@ -38,13 +31,27 @@
     public string Name { get; set; } = "Name";
     
     [Parameter]
-    public IEnumerable<TItem> Items { get; set; } = null!;
-    
-    [Parameter]
-    public TId SelectedId { get; set; } = InitialValue;
-
-    [Parameter]
     public EventCallback<TId> SelectedIdChanged { get; set; }
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        if (_idProperty is null)
+        {
+            var propertyInfos = typeof(TItem)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(x => x.CanRead).ToList();
+
+            _idProperty = propertyInfos.FirstOrDefault(p => p.Name == Value)
+                          ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
+            _nameProperty = propertyInfos.FirstOrDefault(p => p.Name == Name)
+                            ?? throw new ArgumentException($"Unable to access property info for {Name}", nameof(Name));
+        }
+    }
+    
+    private static readonly TId InitialValue;
+    private PropertyInfo? _idProperty;
+    private PropertyInfo? _nameProperty;
 
     private TId BoundValue
     {
