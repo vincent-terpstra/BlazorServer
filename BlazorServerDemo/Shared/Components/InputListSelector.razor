@@ -7,16 +7,32 @@
     <option value="@InitialValue" selected disabled hidden>Choose a country</option>
     @foreach (TItem item in Items)
     {
-        dynamic val = item!;
-        <option value="@val.Id">@val.Name</option>
+        <option value="@_idProperty?.GetValue(item)">@_nameProperty?.GetValue(item)</option>
     }
 </InputSelect>
 
 @code {
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        var propertyInfos = typeof(TItem)
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            .Where(x => x.CanRead).ToList();
+
+        _idProperty = propertyInfos.FirstOrDefault(p => p.Name == Value) 
+                     ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
+        _nameProperty = propertyInfos.FirstOrDefault(p => p.Name == Name) 
+                       ?? throw new ArgumentException($"Unable to access property info for {Name}", nameof(Name));
+    }
+
+    private PropertyInfo? _idProperty;
+    private PropertyInfo? _nameProperty;
+    
     private static readonly TId InitialValue;
 
     [Parameter]
-    public string Id { get; set; } = "Id";
+    public string Value { get; set; } = "Id";
     
     [Parameter]
     public string Name { get; set; } = "Name";
