@@ -1,0 +1,81 @@
+﻿@typeparam TItem
+@typeparam TId
+@using System.Reflection
+
+<InputSelect @attributes="@AdditionalAttributes" @bind-Value="@BoundValue">
+    <option value="@InitialValue" selected disabled hidden>Choose a country</option>
+    @foreach (TItem item in Items)
+    {
+        <option value="@GetId(item)">@_nameProperty?.GetValue(item)</option>
+    }
+</InputSelect>
+
+@code {
+    ///<summary>
+    ///Allows selecting from a list of objects and setting the selected object
+    /// <InputListSelectorV2 id="selectCountry" @bind-Items="@Countries" @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
+    /// </summary>
+    
+    [Parameter]
+    public IEnumerable<TItem> Items { get; set; } = null!;
+    
+    [Parameter]
+    public TItem? SelectedItem { get; set; }
+    [Parameter]
+    public EventCallback<TItem?> SelectedItemChanged { get; set; }
+
+    
+    private TId GetId(TItem item)
+    {
+#pragma warning disable CS8602
+        return (TId) _idProperty.GetValue(item)!;
+#pragma warning restore CS8602
+    }
+    
+    private TId? BoundValue
+    {
+
+        get => SelectedItem is null ? InitialValue :  GetId(SelectedItem);
+        set
+        {
+            if (value is not null)
+            {
+                var item = Items.FirstOrDefault(i => value.Equals(GetId(i)));
+                SelectedItemChanged.InvokeAsync(item);
+            }
+            else
+            {
+                SelectedItemChanged.InvokeAsync(default);
+            }
+            
+        }
+    }
+    [Parameter]
+    public string Value { get; set; } = "Id";
+    
+    [Parameter]
+    public string Name { get; set; } = "Name";
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        if (_idProperty is null)
+        {
+            var propertyInfos = typeof(TItem)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(x => x.CanRead).ToList();
+
+            _idProperty = propertyInfos.FirstOrDefault(p => p.Name == Value)
+                          ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
+            _nameProperty = propertyInfos.FirstOrDefault(p => p.Name == Name)
+                            ?? throw new ArgumentException($"Unable to access property info for {Name}", nameof(Name));
+        }
+    }
+    
+    private static readonly TId InitialValue;
+    private PropertyInfo? _idProperty;
+    private PropertyInfo? _nameProperty;
+
+    [Parameter(CaptureUnmatchedValues=true)]
+    public Dictionary<string, object> AdditionalAttributes { get; set; }
+}
