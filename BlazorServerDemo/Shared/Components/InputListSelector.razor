@@ -12,14 +12,13 @@
 </InputSelect>
 
 @code {
+    ///<summary>
+    /// Creates a list of selectable objects from input values
+    /// <InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country"/>
+    /// </summary>
+    /// 
     [Parameter]
     public IEnumerable<TItem> Items { get; set; } = null!;
-    
-    [Parameter]
-    public TItem? SelectedItem { get; set; }
-    
-    [Parameter]
-    public EventCallback<TItem?> SelectedItemChanged { get; set; }
 
     [Parameter]
     public TId SelectedId { get; set; } = InitialValue;
