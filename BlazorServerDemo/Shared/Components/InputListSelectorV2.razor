@@ -1,12 +1,13 @@
 ﻿@typeparam TItem
 @typeparam TId
 @using System.Reflection
+@using Microsoft.CSharp
 
 <InputSelect @attributes="@AdditionalAttributes" @bind-Value="@BoundValue">
     <option value="@InitialValue" selected disabled hidden>@DefaultValue</option>
     @foreach (TItem item in Items)
     {
-        <option value="@GetId(item)">@_nameProperty?.GetValue(item)</option>
+        <option value="@GetId(item)">@item.GetType().GetProperty(Name).GetValue(item)</option>
     }
 </InputSelect>
 
@@ -68,9 +69,9 @@
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(x => x.CanRead).ToList();
 
-            _idProperty = propertyInfos.FirstOrDefault(p => p.Name == Value)
-                          ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
-            _nameProperty = propertyInfos.FirstOrDefault(p => p.Name == Name)
+            _idProperty = typeof(TItem).GetProperty(Value) 
+                            ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
+            _nameProperty = typeof(TItem).GetProperty(Name) 
                             ?? throw new ArgumentException($"Unable to access property info for {Name}", nameof(Name));
         }
     }
