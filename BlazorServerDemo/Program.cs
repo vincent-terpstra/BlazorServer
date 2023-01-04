@@ -1,6 +1,7 @@
 using BlazorServerDemo.Data;
 using BlazorServerDemo.Interfaces;
 using DataAccess;
+using DataAccess.AppDbContext;
 using DataAccess.Services;
 using Microsoft.EntityFrameworkCore;
 

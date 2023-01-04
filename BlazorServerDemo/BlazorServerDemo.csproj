@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\WebAPIDemo\DataAccess\DataAccess.csproj" />
+      <ProjectReference Include="..\..\WebAPIDemo\Domain\Domain.csproj" />
       <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     </ItemGroup>
 
