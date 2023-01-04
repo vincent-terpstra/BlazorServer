@@ -18,9 +18,8 @@ else
         }
     </InputSelect>*@
     
-    <InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country">
-        <option value="@context.Id">@context.Name</option>
-    </InputListSelector>
+    <InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country"/>
+        
     
     @if (SelectedCountry is not null)
     {
