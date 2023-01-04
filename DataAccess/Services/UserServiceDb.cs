@@ -5,9 +5,9 @@ namespace DataAccess.Services;
 
 public class UserServiceDb : IUserService
 {
-    private readonly AppDbContext _context;
+    private readonly AppDbContext.AppDbContext _context;
 
-    public UserServiceDb(AppDbContext context)
+    public UserServiceDb(AppDbContext.AppDbContext context)
     {
         _context = context;
     }

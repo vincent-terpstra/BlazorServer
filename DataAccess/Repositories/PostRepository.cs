@@ -6,9 +6,9 @@ namespace DataAccess.Repositories;
 
 public class PostRepository : IPostRepository
 {
-    private readonly AppDbContext _dbContext;
+    private readonly AppDbContext.AppDbContext _dbContext;
 
-    public PostRepository(AppDbContext dbContext)
+    public PostRepository(AppDbContext.AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
