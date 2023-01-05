@@ -20,6 +20,7 @@ public class CountryService : ICountryService
             new()
             {
                 Name = "Canada",
+                Region = "Province",
                 Provinces = provinces.Split(Environment.NewLine)
                     .Where(str => !string.IsNullOrWhiteSpace(str))
                     .Select(str => new Province(){Name = str.Trim()}).ToList()
@@ -27,6 +28,7 @@ public class CountryService : ICountryService
             new()
             {
                 Name = "United States",
+                Region = "State",
                 Provinces = states.Split(Environment.NewLine)
                     .Where(str => !string.IsNullOrWhiteSpace(str))
                     .Select(str => new Province(){Name = str.Trim()}).ToList()

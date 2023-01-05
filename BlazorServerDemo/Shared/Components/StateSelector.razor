@@ -5,44 +5,42 @@
 
 @if (Countries is null)
 {
-    <p>Loading component</p>
+    <LoadingSpinner/>
 }
 else
 {
-    <label for="selectCountry">Select Country</label><br/>
-    @*<InputSelect id="selectCountry" @bind-Value="@SelectedCountryId">
-        <option value="" selected disabled hidden>Choose a country</option>
-        @foreach (var country in Countries)
-        {
-            <option value="@country.Id">@country.Name</option>
-        }
-    </InputSelect>*@
-    
-    @*<InputListSelector id="selectCountry" @bind-Items="@Countries" @bind-SelectedId="@SelectedCountryId" TId="Guid" TItem="Country"/>*@
-    <InputListSelectorV2 id="selectCountry" @bind-Items="@Countries" @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
+    <label class="form-label" for="selectCountry">Select a Country</label>
+    <InputListSelectorV2 id="selectCountry" Items="@Countries" DefaultValue="Select a Country"
+                         @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
+
+    <label class="form-label" for="selectCountry">Select a Province</label>
+    <InputListSelectorV2 id="selectProvince" Items="@SelectedCountry?.Provinces" DefaultValue="@($"Select a {SelectedCountry?.Region ?? "Country First"}")"
+                         @bind-SelectedItem="@SelectedProvince" TId="Guid" TItem="Province"/>
+
+    <p>Selected Country is @SelectedCountry?.Name</p>
     @if (SelectedCountry is not null)
     {
-        @foreach (var province in SelectedCountry.Provinces)
-        {
-            <p>@province.Name</p>
-        }
+    <p>Selected @SelectedCountry?.Region is @SelectedProvince?.Name</p>
     }
 }
 
+
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
+        await base.OnInitializedAsync();
+        await Task.Delay(1000); //HACK to show loading spinner
         Countries = _countryService.GetCountries();
     }
 
     private Guid SelectedCountryId
     {
         get => SelectedCountry?.Id ?? Guid.Empty;
-        set => SelectedCountry = Countries.FirstOrDefault(c => c.Id == value);
+        set => SelectedCountry = Countries?.FirstOrDefault(c => c.Id == value);
     }
     
     private Country? SelectedCountry { get; set; }
+    private Province? SelectedProvince { get; set; }
     
-    IEnumerable<Country> Countries { get; set; }
+    IEnumerable<Country>? Countries { get; set; }
 }
