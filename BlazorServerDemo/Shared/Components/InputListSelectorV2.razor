@@ -3,9 +3,9 @@
 @using System.Reflection
 @using Microsoft.CSharp
 
-<InputSelect @attributes="@AdditionalAttributes" @bind-Value="@BoundValue">
+<InputSelect class="form-control" @attributes="@AdditionalAttributes" @bind-Value="@BoundValue">
     <option value="@InitialValue" selected disabled hidden>@DefaultValue</option>
-    @foreach (TItem item in Items)
+    @foreach (TItem item in Items ?? Enumerable.Empty<TItem>())
     {
         <option value="@GetId(item)">@item.GetType().GetProperty(Name).GetValue(item)</option>
     }
@@ -21,7 +21,7 @@
     public string DefaultValue { get; set; } = "Choose";
     
     [Parameter]
-    public IEnumerable<TItem> Items { get; set; } = null!;
+    public IEnumerable<TItem>? Items { get; set; }
     
     [Parameter]
     public TItem? SelectedItem { get; set; }
