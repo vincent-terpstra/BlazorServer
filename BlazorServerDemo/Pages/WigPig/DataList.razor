@@ -1,0 +1,22 @@
+﻿@typeparam TItem
+
+@ListTemplate(ForEach!) 
+
+@code {
+
+    protected override void OnParametersSet()
+    { 
+        ForEach = @<ForEach Items="@Data" ItemRender="@ItemTemplate"/>;
+    }
+    
+    [Parameter]
+    public IEnumerable<TItem>? Data { get; set; }
+        
+    [Parameter]
+    public RenderFragment<TItem> ItemTemplate { get; set; } = (value) => @<li @key=value> value.ToString() </li>;
+
+    [Parameter]
+    public RenderFragment<RenderFragment> ListTemplate { get; set; } = (value) => @<ul>@value</ul>;
+    
+    private RenderFragment? ForEach { get; set; }
+}
