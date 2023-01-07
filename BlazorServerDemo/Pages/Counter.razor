@@ -21,12 +21,19 @@
     
     int count = 0;
 
+    protected override bool ShouldRender()
+    {
+        return count is < 4 or > 10;
+    }
+
     private void CountClick()
     {
         count++;
+        
+        
         TotalCountChanged.InvokeAsync(TotalCount + 1);
         
-        if (count > 5) //HACK
+        if (count > 20) //HACK
             throw new UnreachableException("Paradox");
     }
 
