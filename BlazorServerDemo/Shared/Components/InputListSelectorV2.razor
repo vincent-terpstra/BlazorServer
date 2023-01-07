@@ -30,9 +30,7 @@
     
     private TId GetId(TItem item)
     {
-#pragma warning disable CS8602
         return (TId) _idProperty.GetValue(item)!;
-#pragma warning restore CS8602
     }
     
     private TId? BoundValue
@@ -76,8 +74,8 @@
     }
     
     private static readonly TId InitialValue;
-    private PropertyInfo? _idProperty;
-    private PropertyInfo? _nameProperty;
+    private PropertyInfo _idProperty = null!;
+    private PropertyInfo _nameProperty = null!;
 
     [Parameter(CaptureUnmatchedValues=true)]
     public Dictionary<string, object> AdditionalAttributes { get; set; }
