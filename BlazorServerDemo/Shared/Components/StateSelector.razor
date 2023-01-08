@@ -10,17 +10,17 @@
 else
 {
     <label class="form-label" for="selectCountry">Select a Country</label>
-    <InputListSelectorV2 id="selectCountry" Items="@Countries" DefaultValue="Select a Country"
+    <InputListSelectorV2 id="selectCountry" Items="@Countries" DefaultText="Select a Country"
                          @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
 
     <label class="form-label" for="selectCountry">Select a Province</label>
-    <InputListSelectorV2 id="selectProvince" Items="@SelectedCountry?.Provinces" DefaultValue="@($"Select a {SelectedCountry?.Region ?? "Country First"}")"
+    <InputListSelectorV2 id="selectProvince" Items="@SelectedCountry?.Provinces" DefaultText="@($"Select a {SelectedCountry?.Region ?? "Country First"}")"
                          @bind-SelectedItem="@SelectedProvince" TId="Guid" TItem="Province"/>
 
     <p>Selected Country is @SelectedCountry?.Name</p>
-    @if (SelectedCountry is not null)
+    @if (SelectedProvince is not null)
     {
-    <p>Selected @SelectedCountry?.Region is @SelectedProvince?.Name</p>
+        <p>Selected @SelectedCountry?.Region is @SelectedProvince?.Name</p>
     }
 }
 
@@ -33,13 +33,15 @@ else
         Countries = _countryService.GetCountries();
     }
 
-    private Guid SelectedCountryId
-    {
-        get => SelectedCountry?.Id ?? Guid.Empty;
-        set => SelectedCountry = Countries?.FirstOrDefault(c => c.Id == value);
+    private Country? _selectedCountry;
+    private Country? SelectedCountry { 
+        get => _selectedCountry;
+        set
+        {
+            _selectedCountry = value;
+            SelectedProvince = null;
+        }
     }
-    
-    private Country? SelectedCountry { get; set; }
     private Province? SelectedProvince { get; set; }
     
     IEnumerable<Country>? Countries { get; set; }
