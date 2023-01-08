@@ -2,8 +2,8 @@
 @typeparam TId
 @using System.Reflection
 
-<InputSelect class="form-control" @attributes="@AdditionalAttributes" @bind-Value="@BoundValue">
-    <option value="@InitialValue" selected disabled hidden>@DefaultValue</option>
+<InputSelect class="form-control" @attributes="@UnMatchedAttributes" @bind-Value="@BoundValue">
+    <option value="@InitialValue" selected disabled hidden>@DefaultText</option>
     @foreach (TItem item in Items ?? Enumerable.Empty<TItem>())
     {
         <option value="@GetId(item)">@_nameProperty?.GetValue(item)</option>
@@ -11,72 +11,49 @@
 </InputSelect>
 
 @code {
-
     ///<summary>
     ///Allows selecting from a list of objects and setting the selected object
     /// <InputListSelectorV2 id="selectCountry" @bind-Items="@Countries" @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
     /// </summary>
     [Parameter]
-    public string DefaultValue { get; set; } = "Choose";
-    
-    [Parameter]
     public IEnumerable<TItem>? Items { get; set; }
     
     [Parameter]
     public TItem? SelectedItem { get; set; }
+    
     [Parameter]
     public EventCallback<TItem?> SelectedItemChanged { get; set; }
-
     
-    private TId GetId(TItem item)
-    {
-        return (TId) _idProperty.GetValue(item)!;
-    }
+    [Parameter]
+    public string DefaultText { get; set; } = "Choose";
     
-    private TId? BoundValue
-    {
-
-        get => SelectedItem is null ? InitialValue :  GetId(SelectedItem);
-        set
-        {
-            if (value is not null)
-            {
-                var item = Items.FirstOrDefault(i => value.Equals(GetId(i)));
-                SelectedItemChanged.InvokeAsync(item);
-            }
-            else
-            {
-                SelectedItemChanged.InvokeAsync(default);
-            }
-            
-        }
-    }
     [Parameter]
     public string Value { get; set; } = "Id";
     
     [Parameter]
     public string Name { get; set; } = "Name";
     
-    protected override async Task OnParametersSetAsync()
+    [Parameter(CaptureUnmatchedValues=true)]
+    public Dictionary<string, object> UnMatchedAttributes { get; set; }
+   
+    protected override void OnParametersSet()
     {
-        await base.OnParametersSetAsync();
-        if (_idProperty is null)
-        {
-            var propertyInfos = typeof(TItem)
-                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(x => x.CanRead).ToList();
-
-            _idProperty = typeof(TItem).GetProperty(Value) 
-                            ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
-            _nameProperty = typeof(TItem).GetProperty(Name) 
-                            ?? throw new ArgumentException($"Unable to access property info for {Name}", nameof(Name));
-        }
+        _idProperty ??= typeof(TItem).GetProperty(Value) 
+            ?? throw new ArgumentException($"Unable to access property info for {Value}", nameof(Value));
+        _nameProperty ??= typeof(TItem).GetProperty(Name) 
+            ?? throw new ArgumentException($"Unable to access property info for {Name}", nameof(Name));
     }
     
     private static readonly TId InitialValue;
-    private PropertyInfo _idProperty = null!;
-    private PropertyInfo _nameProperty = null!;
-
-    [Parameter(CaptureUnmatchedValues=true)]
-    public Dictionary<string, object> AdditionalAttributes { get; set; }
+    
+    private TId GetId(TItem item) => (TId) _idProperty?.GetValue(item)!;
+    
+    private TId? BoundValue
+    {
+        get => SelectedItem is null ? InitialValue :  GetId(SelectedItem);
+        set => SelectedItemChanged.InvokeAsync(value is null ? default : Items.FirstOrDefault(i => value.Equals(GetId(i)))); 
+    }
+    
+    private PropertyInfo? _idProperty;
+    private PropertyInfo? _nameProperty;
 }
