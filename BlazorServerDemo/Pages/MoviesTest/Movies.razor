@@ -1,0 +1,28 @@
+﻿@* Movies.razor *@
+
+@page "/movies"
+
+<h2>Movie List</h2>
+<p>Source: <a href="https://www.youtube.com/watch?v=L_n-12FglLI">NDC Oslo 2022 - Egil H.</a></p>
+
+<DataTable Items="@_movies"/>
+
+@code {
+
+    private IEnumerable<Movie> _movies = new[]
+    {
+        new Movie()
+        {
+            Id = 1,
+            Title = "Blazor",
+            ReleaseDate = new(2019, 2, 23)
+        },
+        new Movie()
+        {
+            Id = 2,
+            Title = "bUnit",
+            ReleaseDate = new(2021, 3, 24)
+        }
+    };
+
+}

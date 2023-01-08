@@ -1,0 +1,21 @@
+﻿@using System.Reflection
+@typeparam TItem
+
+<table>
+    <thead>
+        <DataTableHeader TItem="TItem"/>
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <DataTableRow item="@item"></DataTableRow>
+        }
+    </tbody>
+</table>
+
+
+@code {
+
+    [Parameter]
+    public IEnumerable<TItem> Items { get; set; } = Enumerable.Empty<TItem>();
+}

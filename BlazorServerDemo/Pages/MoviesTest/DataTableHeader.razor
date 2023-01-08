@@ -1,0 +1,14 @@
+﻿@typeparam TItem
+
+<tr>
+    @foreach (var name in GetColumnNames())
+    {
+        <th>@name</th>
+    }
+</tr>
+
+@code {
+    private IEnumerable<string> GetColumnNames()
+        => DataTableHelpers.GetItemsPropertyInfo<TItem>()
+            .Select(x => x.Name);
+}

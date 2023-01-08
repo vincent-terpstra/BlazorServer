@@ -1,0 +1,15 @@
+﻿@typeparam TItem
+<tr>
+    @foreach (var columnData in GetItemDate(item))
+    {
+        <td>@columnData</td>
+    }
+</tr>
+@code {
+    [Parameter]
+    public TItem item { get; set; }
+    
+    private IEnumerable<object?> GetItemDate(TItem item)
+        => DataTableHelpers.GetItemsPropertyInfo<TItem>()
+            .Select(x => x.GetValue(item));
+}
