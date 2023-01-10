@@ -1,0 +1,20 @@
+﻿@using System.Text
+@inherits TestContext
+
+@code {
+
+    [Fact]
+    public void Foo_Doesnt_Have_A_Bar_But_Stub()
+    {
+        //Register the stub substitution
+        ComponentFactories.AddStub<Bar>(@<h2>NOT BAR</h2>);
+        
+        //
+        var cut = Render(@<Foo/>);
+        
+        Assert.False(cut.HasComponent<Bar>());
+        Assert.True(cut.HasComponent<Stub<Bar>>());
+        cut.Find("h3").MarkupMatches(@<h3>FOO COMPONENT</h3>);
+        cut.FindComponent<Stub<Bar>>().MarkupMatches(@<h2>NOT BAR</h2>);
+    }
+}
