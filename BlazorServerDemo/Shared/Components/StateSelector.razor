@@ -63,6 +63,6 @@ else
         get => Province;
         set => ProvinceChanged.InvokeAsync(value);
     }
-    
-    IEnumerable<Country>? Countries { get; set; }
+
+    public IEnumerable<Country>? Countries { get; set; }
 }

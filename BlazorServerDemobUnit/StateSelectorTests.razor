@@ -1,25 +1,45 @@
 ﻿@using BlazorServerDemo.Models
 @using BlazorServerDemo.Shared.Components;
 @using AngleSharp.Html.Dom
-@using BlazorServerDemo
+@using BlazorServerDemo.Data
+@using BlazorServerDemo.Interfaces
+@inherits TestContext;
 
 @code {
+    public StateSelectorTests()
+    {
+        Services.AddSingleton<ICountryService, CountryService>();
+        // render StateSelector with Country and Province
+        cut = Render(@<StateSelector @bind-Country="_country" @bind-Province="_province" @ref="StateSelector"/>);
+    }
+
+    IRenderedFragment cut;
+    StateSelector StateSelector { get; set; }
+    
     Province _province;
     Country _country;
 
+    [Fact]
+    public void StateSelectorHasCountries()
+    {
+        //Arrange
+        //Act
+        //Assert
+        Assert.NotNull(StateSelector);
+        Assert.NotEmpty(StateSelector.Countries);
+    }
     
     [Fact]
     public void Selecting_First_Country()
     {
-    //Arrange - render StateSelector with Country and Province
-        using var ctx = new TestContext();
-        ctx.Services.RegisterDependancies();
-
-        IRenderedFragment cut = ctx.Render(@<StateSelector @bind-Country="_country" @bind-Province="_province"></StateSelector>);
-
+        //Arrange
         var selectCountry = cut.Find("#selectCountry");
         IHtmlOptionElement choice = (IHtmlOptionElement)selectCountry.Children[1];
+        
+        //Act
         selectCountry.Change(choice.Value);
+        
+        //Assert
         Assert.NotNull(_country);
     }
     
