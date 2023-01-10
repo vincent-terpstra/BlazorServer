@@ -1,0 +1,52 @@
+﻿@page "/users"
+@page "/users/add/"
+@page "/users/view/"
+@page "/users/edit/{id:int}"
+
+@inject ILogger<AllUsersPage> _logger
+@inject IUserService _userService
+
+<h3>AllUsersForm</h3>
+
+@if (Users is null)
+{
+    <LoadingSpinner/>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Users)
+        {   
+            <tr>
+                <td>@user.Firstname</td>
+                <td>@user.Lastname</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    
+    <p>@Id</p>
+}
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    
+    
+    
+    protected List<PersonModel> Users = null;
+    
+    protected override async Task  OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Users = (await _userService.GetUsersAsync()).ToList();
+        StateHasChanged();
+    }
+}

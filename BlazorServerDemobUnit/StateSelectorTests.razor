@@ -1,0 +1,26 @@
+﻿@using BlazorServerDemo.Models
+@using BlazorServerDemo.Shared.Components;
+@using AngleSharp.Html.Dom
+@using BlazorServerDemo
+
+@code {
+    Province _province;
+    Country _country;
+
+    
+    [Fact]
+    public void Selecting_First_Country()
+    {
+    //Arrange - render StateSelector with Country and Province
+        using var ctx = new TestContext();
+        ctx.Services.RegisterDependancies();
+
+        IRenderedFragment cut = ctx.Render(@<StateSelector @bind-Country="_country" @bind-Province="_province"></StateSelector>);
+
+        var selectCountry = cut.Find("#selectCountry");
+        IHtmlOptionElement choice = (IHtmlOptionElement)selectCountry.Children[1];
+        selectCountry.Change(choice.Value);
+        Assert.NotNull(_country);
+    }
+    
+}

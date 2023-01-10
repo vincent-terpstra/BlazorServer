@@ -1,22 +1,13 @@
-using BlazorServerDemo.Data;
-using BlazorServerDemo.Interfaces;
+using BlazorServerDemo;
 using DataAccess;
-using DataAccess.AppDbContext;
 using DataAccess.Services;
-using Microsoft.EntityFrameworkCore;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddScoped<IUserService, UserServiceDb>();
-builder.Services.AddSingleton<ICountryService, CountryService>();
-
-builder.Services.AddDbContext<AppDbContext>(
-    opt => opt.UseInMemoryDatabase("InMem")
-);
+builder.Services.RegisterDependancies();
 
 var app = builder.Build();
 

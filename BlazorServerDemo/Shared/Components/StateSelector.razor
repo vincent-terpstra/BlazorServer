@@ -11,38 +11,58 @@ else
 {
     <label class="form-label" for="selectCountry">Select a Country</label>
     <InputListSelectorV2 id="selectCountry" Items="@Countries" DefaultText="Select a Country"
-                         @bind-SelectedItem="@SelectedCountry" TId="Guid" TItem="Country"/>
+                         @bind-SelectedItem="@BoundCountry" TId="Guid" TItem="Country"/>
 
     <label class="form-label" for="selectCountry">Select a Province</label>
-    <InputListSelectorV2 id="selectProvince" Items="@SelectedCountry?.Provinces" DefaultText="@($"Select a {SelectedCountry?.Region ?? "Country First"}")"
-                         @bind-SelectedItem="@SelectedProvince" TId="Guid" TItem="Province"/>
+    <InputListSelectorV2 id="selectProvince" Items="@BoundCountry?.Provinces" DefaultText="@($"Select a {BoundCountry?.Region ?? "Country First"}")"
+                         @bind-SelectedItem="@BoundProvince" TId="Guid" TItem="Province"/>
 
-    <p>Selected Country is @SelectedCountry?.Name</p>
-    @if (SelectedProvince is not null)
+    <p>Selected Country is @BoundCountry?.Name</p>
+    @if (BoundProvince is not null)
     {
-        <p>Selected @SelectedCountry?.Region is @SelectedProvince?.Name</p>
+        <p>Selected @BoundCountry?.Region is @BoundProvince?.Name</p>
     }
 }
 
 
 @code {
+
+    [Parameter]
+    public Country Country { get; set; }
+
+    [Parameter]
+    public Province Province { get; set; }
+
+    [Parameter]
+    public EventCallback<Country> CountryChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<Province> ProvinceChanged { get; set; }
+
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        await Task.Delay(1000); //HACK to show loading spinner
         Countries = _countryService.GetCountries();
     }
 
     private Country? _selectedCountry;
-    private Country? SelectedCountry { 
-        get => _selectedCountry;
+
+    private Country? BoundCountry
+    {
+        get => Country;
         set
         {
-            _selectedCountry = value;
-            SelectedProvince = null;
+            CountryChanged.InvokeAsync(value);
+            ProvinceChanged.InvokeAsync(null);
         }
     }
-    private Province? SelectedProvince { get; set; }
+
+    private Province? BoundProvince
+    {
+        get => Province;
+        set => ProvinceChanged.InvokeAsync(value);
+    }
     
     IEnumerable<Country>? Countries { get; set; }
 }
