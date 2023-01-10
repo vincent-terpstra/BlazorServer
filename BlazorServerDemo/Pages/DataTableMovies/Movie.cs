@@ -1,4 +1,4 @@
-﻿namespace BlazorServerDemo.Pages.MoviesTest;
+﻿namespace BlazorServerDemo.Pages.DataTableMovies;
 
 public class Movie
 {

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace BlazorServerDemo.Pages.MoviesTest;
+namespace BlazorServerDemo.Pages.DataTableMovies;
 
 internal static class DataTableHelpers
 {

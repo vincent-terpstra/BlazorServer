@@ -1,0 +1,73 @@
+﻿@* DataTableTest.razor *@
+@inherits TestContext
+
+@code {
+
+    [Fact]
+    public void DataTable_Renders_Basic_Table_With_Head_And_Body()
+    {
+    //Arrange
+    //Render a <DataTable> component, TItem is unimportant
+        var cut = Render(@<DataTable TItem="object"/>);
+
+    //Act
+
+    //Assert
+        cut.MarkupMatches(@<table>
+                              <thead diff:ignoreChildren></thead>
+                              <tbody></tbody>
+                          </table>);
+    }
+
+    [Fact]
+    public void DataTable_Uses_DataTableHeader_To_Render_Table_Head()
+    {
+    //Arrange
+    //Render a <Datatable> component, TItem is unimportant
+        IRenderedFragment cut = Render(@<DataTable TItem="object"/>);
+
+    //Find the <DataTableHeader> component in the render tree
+        IRenderedComponent<DataTableHeader<object>> dataTableHeader
+            = cut.FindComponent<DataTableHeader<object>>();
+
+    //Assert that the content of the DataTableHeader matches the first row in thead
+        cut.Find("thead")
+            .ChildNodes.MarkupMatches(dataTableHeader);
+    }
+
+    [Fact]
+    public void DataTable_Uses_DataTableRow_ToRender_Table_Row()
+    {
+        var movies = CreateMoviesList();
+
+        IRenderedFragment cut = Render(@<DataTable Items="movies"/>);
+        
+        //Find all DataTableRow components in the render tree
+        var dataTableRows = cut.FindComponents<DataTableRow<Movie>>();
+        
+        //Assert that the movies in the component are the same as the ones passed
+        IEnumerable<Movie> moviesInRows = dataTableRows.Select(dataTableRow => dataTableRow.Instance.item);
+        Assert.Equal(movies, moviesInRows);
+    }
+
+
+    public static Movie[] CreateMoviesList()
+    {
+        return new[]
+        {
+            new Movie()
+            {
+                Id = 1,
+                Title = "Blazor",
+                ReleaseDate = new(2019, 2, 23)
+            },
+            new Movie()
+            {
+                Id = 2,
+                Title = "bUnit",
+                ReleaseDate = new(2021, 3, 24)
+            }
+        };
+    }
+
+}

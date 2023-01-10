@@ -1,0 +1,27 @@
+﻿@inherits TestContext
+
+@code {
+
+    [Fact]
+    public void DataTableRow_Renders_No_Columns_When_TItem_Has_No_Public_Properties()
+    {
+        IRenderedFragment cut = Render(@<DataTableRow TItem="object"/>);
+        
+        cut.MarkupMatches("<tr />");
+    }
+
+    [Fact]
+    public void DataTableRow_Renders_Columns_Based_On_Public_Properties_Of_Item()
+    {
+        var movie = new Movie() {Id = 1, Title = "Blazor", ReleaseDate = new(2019, 2, 23)};
+
+        IRenderedFragment cut = Render(@<DataTableRow item="movie"/>);
+        
+        cut.MarkupMatches(
+            @<tr>
+                <td>@movie.Id</td>
+                <td>@movie.Title</td>
+                <td>@movie.ReleaseDate</td>
+            </tr>);
+    }
+}
