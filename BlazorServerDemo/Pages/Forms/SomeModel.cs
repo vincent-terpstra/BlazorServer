@@ -13,7 +13,7 @@ class SomeModel
     public SomeStateEnum SomeSelectProperty { get; set; } = SomeStateEnum.Pending;
     public string? SelectedString { get; set; }
     public List<string> ListProp { get; set; } = new(){"Hello", "World"};
-    public Color SelectedColor { get; set; }
+    public Color SelectedColor { get; set; } = Color.Blue;
 }
 
 public enum SomeStateEnum

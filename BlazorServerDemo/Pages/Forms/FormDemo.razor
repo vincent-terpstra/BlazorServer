@@ -1,4 +1,5 @@
 ﻿@page "/Forms"
+@using System.Drawing
 <h3>FormDemo</h3>
 
     @*
@@ -53,7 +54,6 @@
         base.OnInitialized();
         _formModel = new();
         _context = new(_formModel);
-        
     }
     
     SomeModel _formModel;
