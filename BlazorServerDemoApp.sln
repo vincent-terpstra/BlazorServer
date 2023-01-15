@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServerDemobUnit", "BlazorServerDemobUnit\BlazorServerDemobUnit.csproj", "{2F7C8A3E-A4FC-4EE4-AF5C-A67C067025D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServerDemo.SpecFlow", "BlazorServerDemo.SpecFlow\BlazorServerDemo.SpecFlow.csproj", "{5DFD6582-7FD7-436F-92FD-9AA540ECDE39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{2F7C8A3E-A4FC-4EE4-AF5C-A67C067025D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F7C8A3E-A4FC-4EE4-AF5C-A67C067025D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F7C8A3E-A4FC-4EE4-AF5C-A67C067025D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DFD6582-7FD7-436F-92FD-9AA540ECDE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFD6582-7FD7-436F-92FD-9AA540ECDE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFD6582-7FD7-436F-92FD-9AA540ECDE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFD6582-7FD7-436F-92FD-9AA540ECDE39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
