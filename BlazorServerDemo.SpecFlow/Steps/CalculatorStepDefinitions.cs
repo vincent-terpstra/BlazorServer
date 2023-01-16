@@ -35,9 +35,17 @@ public sealed class CalculatorStepDefinitions
         _result = _calculator.Add();
     }
 
-    [Then("the result should be (.*)")]
-    public void ThenTheResultShouldBe(int result)
+    
+
+    [When(@"the two numbers are subtracted")]
+    public void WhenTheTwoNumbersAreSubtracted()
     {
-        Assert.Equal(result, _result);
+        _result = _calculator.Subtract();
     }
+    
+    [Then("the result should be (.*)")]
+     public void ThenTheResultShouldBe(int result)
+     {
+         Assert.Equal(result, _result);
+     }
 }

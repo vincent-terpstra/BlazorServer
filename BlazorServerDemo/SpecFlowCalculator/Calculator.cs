@@ -9,4 +9,6 @@ public class Calculator
     {
         return FirstNumber + SecondNumber;
     }
+
+    public int Subtract() => FirstNumber - SecondNumber;
 }
