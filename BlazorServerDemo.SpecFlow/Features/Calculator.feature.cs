@@ -84,18 +84,29 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Add two numbers")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Add two numbers")]
         [Xunit.TraitAttribute("FeatureTitle", "Calculator")]
         [Xunit.TraitAttribute("Description", "Add two numbers")]
-        [Xunit.TraitAttribute("Category", "mytag")]
-        public virtual void AddTwoNumbers()
+        [Xunit.TraitAttribute("Category", "Calculator")]
+        [Xunit.InlineDataAttribute("50", "70", "120", new string[0])]
+        [Xunit.InlineDataAttribute("30", "40", "70", new string[0])]
+        [Xunit.InlineDataAttribute("60", "30", "90", new string[0])]
+        public virtual void AddTwoNumbers(string first, string second, string add, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "mytag"};
+            string[] @__tags = new string[] {
+                    "Calculator"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("First", first);
+            argumentsOfScenario.Add("Second", second);
+            argumentsOfScenario.Add("Add", add);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 9
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -115,31 +126,37 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 10
- testRunner.Given("the first number is 50", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given(string.Format("the first number is {0}", first), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.And("the second number is 70", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And(string.Format("the second number is {0}", second), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.When("the two numbers are added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("the two numbers are added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.Then("the result should be 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then(string.Format("the result should be {0}", add), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Subtract two numbers")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Subtract two numbers")]
         [Xunit.TraitAttribute("FeatureTitle", "Calculator")]
         [Xunit.TraitAttribute("Description", "Subtract two numbers")]
-        public virtual void SubtractTwoNumbers()
+        [Xunit.InlineDataAttribute("50", "70", "-20", new string[0])]
+        [Xunit.InlineDataAttribute("30", "40", "-10", new string[0])]
+        [Xunit.InlineDataAttribute("60", "30", "30", new string[0])]
+        public virtual void SubtractTwoNumbers(string first, string second, string subtract, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("First", first);
+            argumentsOfScenario.Add("Second", second);
+            argumentsOfScenario.Add("Subtract", subtract);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Subtract two numbers", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
-this.ScenarioInitialize(scenarioInfo);
+#line 21
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -158,17 +175,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
- testRunner.Given("the first number is 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 22
+        testRunner.Given(string.Format("the first number is {0}", first), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
- testRunner.And("the second number is 70", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
+        testRunner.And(string.Format("the second number is {0}", second), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
- testRunner.When("the two numbers are subtracted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
+        testRunner.When("the two numbers are subtracted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
- testRunner.Then("the result should be 50", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+        testRunner.Then(string.Format("the result should be {0}", subtract), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
