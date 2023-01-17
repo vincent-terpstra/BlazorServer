@@ -10,9 +10,9 @@ public class BasePageObject
         PagePath = pagePath;
     }
 
-    public string PagePath { get; }
-    public IBrowser Browser { get; }
-    public IPage Page { get; set; } = null!;
+    private string PagePath { get; }
+    private IBrowser Browser { get; }
+    protected IPage Page { get; set; } = null!;
 
     public async Task NavigateAsync()
     {

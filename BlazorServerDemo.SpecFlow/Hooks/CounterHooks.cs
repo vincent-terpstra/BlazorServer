@@ -12,7 +12,9 @@ public class CounterHooks
     public async Task BeforeCounterScenario(IObjectContainer container)
     {
         var playwright = await Playwright.CreateAsync();
-        var browser = await playwright.Chromium.LaunchAsync();
+        var browser = await playwright.Chromium.LaunchAsync(
+        //    new() { Headless = false, SlowMo = 2000 }
+        );
         var pageObject = new CounterPageObject(browser);
         
         container.RegisterInstanceAs(playwright);
@@ -28,5 +30,4 @@ public class CounterHooks
         var playwright = container.Resolve<IPlaywright>();
         playwright.Dispose();
     }
-    
 }
