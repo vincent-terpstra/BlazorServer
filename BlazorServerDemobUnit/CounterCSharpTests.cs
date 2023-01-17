@@ -13,7 +13,7 @@ public class CounterCSharpTests : TestContext
         var cut = RenderComponent<Counter>();
 
         // Assert that content of the paragraph shows counter at zero
-        cut.Find("p").MarkupMatches("<p>Current count: 0</p>");
+        cut.Find("#counter-val").MarkupMatches("<div id='counter-val'>0</div>");
     }
 
     [Fact]
@@ -26,6 +26,6 @@ public class CounterCSharpTests : TestContext
         cut.Find("button").Click();
 
         // Assert that the counter was incremented
-        cut.Find("p").MarkupMatches("<p>Current count: 1</p>");
+        cut.Find("#counter-val").MarkupMatches("<div id='counter-val'>1</div>");
     }
 }
