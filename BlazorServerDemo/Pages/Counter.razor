@@ -25,17 +25,16 @@
 
     protected override bool ShouldRender()
     {
-        return count is < 4 or > 10;
+        return count is < 4 or > 6;
     }
 
     private void CountClick()
     {
         count++;
         
-        
         TotalCountChanged.InvokeAsync(TotalCount + 1);
         
-        if (count > 20) //HACK
+        if (count > 9) //HACK will throw on 10
             throw new UnreachableException("Paradox");
     }
 
