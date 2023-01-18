@@ -20,7 +20,7 @@ namespace BlazorServerDemo.SpecFlow.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Xunit.TraitAttribute("Category", "Counter")]
-    public partial class CounterShouldBeProperlyIncrementingItsValueFeature : object, Xunit.IClassFixture<CounterShouldBeProperlyIncrementingItsValueFeature.FixtureData>, System.IDisposable
+    public partial class CounterComponentChecksFeature : object, Xunit.IClassFixture<CounterComponentChecksFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -33,7 +33,7 @@ namespace BlazorServerDemo.SpecFlow.Features
 #line 1 "Counter.feature"
 #line hidden
         
-        public CounterShouldBeProperlyIncrementingItsValueFeature(CounterShouldBeProperlyIncrementingItsValueFeature.FixtureData fixtureData, BlazorServerDemo_SpecFlow_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CounterComponentChecksFeature(CounterComponentChecksFeature.FixtureData fixtureData, BlazorServerDemo_SpecFlow_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -42,7 +42,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Counter should be properly incrementing its value", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Counter Component checks", null, ProgrammingLanguage.CSharp, new string[] {
                         "Counter"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -84,7 +84,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Click increases the counter 2")]
-        [Xunit.TraitAttribute("FeatureTitle", "Counter should be properly incrementing its value")]
+        [Xunit.TraitAttribute("FeatureTitle", "Counter Component checks")]
         [Xunit.TraitAttribute("Description", "Click increases the counter 2")]
         public virtual void ClickIncreasesTheCounter2()
         {
@@ -125,7 +125,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Click increases the counter 3")]
-        [Xunit.TraitAttribute("FeatureTitle", "Counter should be properly incrementing its value")]
+        [Xunit.TraitAttribute("FeatureTitle", "Counter Component checks")]
         [Xunit.TraitAttribute("Description", "Click increases the counter 3")]
         public virtual void ClickIncreasesTheCounter3()
         {
@@ -166,7 +166,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Counter doesnt update view from 4-6")]
-        [Xunit.TraitAttribute("FeatureTitle", "Counter should be properly incrementing its value")]
+        [Xunit.TraitAttribute("FeatureTitle", "Counter Component checks")]
         [Xunit.TraitAttribute("Description", "Counter doesnt update view from 4-6")]
         public virtual void CounterDoesntUpdateViewFrom4_6()
         {
@@ -193,32 +193,79 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 17
  testRunner.Given("a user in the counter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 18
  testRunner.When("the increase button is clicked 4 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
- testRunner.Then("the counter value is 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 20
- testRunner.When("the increase button is clicked 1 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
  testRunner.Then("the counter value is 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 21
+ testRunner.When("the increase button is clicked 1 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
- testRunner.When("the increase button is clicked 1 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 25
  testRunner.Then("the counter value is 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
+#line 24
  testRunner.When("the increase button is clicked 1 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 28
+#line 26
+ testRunner.Then("the counter value is 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 27
+ testRunner.When("the increase button is clicked 1 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
  testRunner.Then("the counter value is 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Counter errors at 10")]
+        [Xunit.TraitAttribute("FeatureTitle", "Counter Component checks")]
+        [Xunit.TraitAttribute("Description", "Counter errors at 10")]
+        public virtual void CounterErrorsAt10()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Counter errors at 10", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 31
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 32
+ testRunner.Given("a user in the counter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 33
+ testRunner.Then("the page has no errors", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 34
+ testRunner.When("the increase button is clicked 10 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 35
+ testRunner.Then("the page has errors", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 36
+ testRunner.Then("the counter value is 9", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -231,12 +278,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                CounterShouldBeProperlyIncrementingItsValueFeature.FeatureSetup();
+                CounterComponentChecksFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CounterShouldBeProperlyIncrementingItsValueFeature.FeatureTearDown();
+                CounterComponentChecksFeature.FeatureTearDown();
             }
         }
     }

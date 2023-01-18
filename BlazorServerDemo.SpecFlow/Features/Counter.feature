@@ -1,5 +1,5 @@
 ﻿@Counter
-Feature: Counter should be properly incrementing its value
+Feature: Counter Component checks
 
 Scenario: Click increases the counter 2
 	Given a user in the counter page
@@ -27,4 +27,11 @@ Scenario: Counter doesnt update view from 4-6
 	When the increase button is clicked 1 times
 	# counter at 7
 	Then the counter value is 7
+	
+Scenario: Counter errors at 10
+	Given a user in the counter page
+	Then the page has no errors
+	When the increase button is clicked 10 times
+	Then the page has errors
+	Then the counter value is 9
 	

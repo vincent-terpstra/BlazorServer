@@ -33,4 +33,5 @@ public class CounterStepDefinitions
         
         Assert.Equal(value, counterValue);
     }
+    
 }

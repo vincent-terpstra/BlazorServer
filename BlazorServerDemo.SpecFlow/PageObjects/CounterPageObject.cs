@@ -11,4 +11,9 @@ public class CounterPageObject : BasePageObject
     public async Task ClickIncreaseButton() => await Page.ClickAsync("#increase-btn");
 
     public async Task<int> CounterValue() => int.Parse(await Page.InnerTextAsync("#counter-val"));
+
+    public async Task<bool> HasErrors()
+    {
+        return await Page.Locator("#blazor-error-ui:visible").CountAsync() != 0;
+    }
 }
