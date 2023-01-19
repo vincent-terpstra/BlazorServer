@@ -44,12 +44,7 @@
     public TaskModel NewTask = new();
 
     private int PercentDone => Tasks.Count(x => x.IsComplete) * 100 / Tasks.Count;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-    }
-
+    
     private void AddTask()
     {
         if(NewTask.Task.Length > 0)

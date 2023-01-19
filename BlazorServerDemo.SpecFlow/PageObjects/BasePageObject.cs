@@ -14,9 +14,9 @@ public class BasePageObject
     private IBrowser Browser { get; }
     protected IPage Page { get; set; } = null!;
 
-    public async Task NavigateAsync()
+    public async Task NavigateAsync(string page = "")
     {
         Page = await Browser.NewPageAsync();
-        await Page.GotoAsync(PagePath);
+        await Page.GotoAsync(PagePath + page);
     }
 }

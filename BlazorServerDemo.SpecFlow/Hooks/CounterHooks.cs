@@ -1,10 +1,4 @@
-﻿using Autofac.Core;
-using BlazorServerDemo.SpecFlow.PageObjects;
-using BoDi;
-using Microsoft.Playwright;
-using Xunit;
-
-namespace BlazorServerDemo.SpecFlow.Hooks;
+﻿namespace BlazorServerDemo.SpecFlow.Hooks;
 
 [Binding]
 public class CounterHooks
