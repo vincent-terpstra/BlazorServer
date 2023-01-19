@@ -2,7 +2,7 @@
 
 public class TaskListPageObject : BasePageObject
 {
-    public TaskListPageObject(IBrowser browser) : base(browser, "https://localhost:7171/Tasks/")
+    public TaskListPageObject(IBrowser browser) : base(browser, "Tasks/")
     {
     }
 

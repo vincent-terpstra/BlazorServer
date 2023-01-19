@@ -4,7 +4,7 @@ namespace BlazorServerDemo.SpecFlow.PageObjects;
 
 public class CounterPageObject : BasePageObject
 {
-    public CounterPageObject(IBrowser browser) : base(browser, "https://localhost:7171/counter")
+    public CounterPageObject(IBrowser browser) : base(browser, "counter")
     {
     }
 

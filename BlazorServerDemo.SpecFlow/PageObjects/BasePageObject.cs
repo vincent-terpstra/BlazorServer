@@ -4,10 +4,12 @@ namespace BlazorServerDemo.SpecFlow.PageObjects;
 
 public class BasePageObject
 {
-    protected BasePageObject(IBrowser browser, string pagePath = "https://localhost:7171/")
+
+    private readonly string BaseUrl = "https://localhost:7171/";
+    protected BasePageObject(IBrowser browser, string path = "")
     {
         Browser = browser;
-        PagePath = pagePath;
+        PagePath = BaseUrl + path;
     }
 
     private string PagePath { get; }
