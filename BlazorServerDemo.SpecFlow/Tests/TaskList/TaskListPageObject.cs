@@ -1,4 +1,4 @@
-﻿namespace BlazorServerDemo.SpecFlow.PageObjects;
+﻿namespace BlazorServerDemo.SpecFlow.Tests.TaskList;
 
 public class TaskListPageObject : BasePageObject
 {

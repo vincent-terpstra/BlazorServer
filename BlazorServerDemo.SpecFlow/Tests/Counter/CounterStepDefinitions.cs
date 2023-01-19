@@ -1,7 +1,4 @@
-﻿using BlazorServerDemo.SpecFlow.PageObjects;
-using Xunit;
-
-namespace BlazorServerDemo.SpecFlow.Steps;
+﻿namespace BlazorServerDemo.SpecFlow.Tests.Counter;
 
 [Binding]
 public class CounterStepDefinitions

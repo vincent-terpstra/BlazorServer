@@ -1,6 +1,4 @@
-﻿using Autofac.Core;
-
-namespace BlazorServerDemo.SpecFlow.Steps;
+﻿namespace BlazorServerDemo.SpecFlow.Tests.TaskList;
 
 [Binding]
 public class TaskListStepDefinitions

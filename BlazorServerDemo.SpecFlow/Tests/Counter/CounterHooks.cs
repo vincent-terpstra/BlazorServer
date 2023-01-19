@@ -1,4 +1,4 @@
-﻿namespace BlazorServerDemo.SpecFlow.Hooks;
+﻿namespace BlazorServerDemo.SpecFlow.Tests.Counter;
 
 [Binding]
 public class CounterHooks

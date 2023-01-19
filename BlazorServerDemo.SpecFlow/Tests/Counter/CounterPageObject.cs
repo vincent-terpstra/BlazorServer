@@ -1,6 +1,4 @@
-﻿using Microsoft.Playwright;
-
-namespace BlazorServerDemo.SpecFlow.PageObjects;
+﻿namespace BlazorServerDemo.SpecFlow.Tests.Counter;
 
 public class CounterPageObject : BasePageObject
 {
