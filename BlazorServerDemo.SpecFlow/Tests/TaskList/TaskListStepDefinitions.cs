@@ -31,4 +31,11 @@ public class TaskListStepDefinitions
         string header = await _taskListPageObject.GetHeader();
         Assert.StartsWith(username, header);
     }
+
+    [When(@"the user adds a task ""(.*)""")]
+    public async Task WhenTheUserAddsATask(string p0)
+    {
+        await _taskListPageObject.SetInputString(p0);
+        await _taskListPageObject.SubmitTask();
+    }
 }

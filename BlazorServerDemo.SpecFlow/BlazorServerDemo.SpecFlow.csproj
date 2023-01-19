@@ -29,4 +29,8 @@
       <ProjectReference Include="..\BlazorServerDemo\BlazorServerDemo.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Tests" />
+    </ItemGroup>
+
 </Project>

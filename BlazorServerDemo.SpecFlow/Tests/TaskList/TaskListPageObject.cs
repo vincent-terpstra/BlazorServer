@@ -7,4 +7,8 @@ public class TaskListPageObject : BasePageObject
     }
 
     public Task<string> GetHeader() => Page.GetByRole(AriaRole.Heading).InnerTextAsync();
+
+    public Task SetInputString(string input) => Page.GetByRole(AriaRole.Textbox).FillAsync(input);
+
+    public Task SubmitTask() => Page.GetByRole(AriaRole.Button).ClickAsync();
 }

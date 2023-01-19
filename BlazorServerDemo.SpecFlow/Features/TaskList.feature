@@ -9,3 +9,6 @@ Background: a user on the TaskList page
 
 Scenario: User in TaskList page
 	Then the name on the page is username
+	
+Scenario: User can add tasks
+	When the user adds a task "task one"

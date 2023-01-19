@@ -10,7 +10,7 @@
 
 <EditForm Model="@NewTask" OnValidSubmit="AddTask">
     <div class="form-group row">
-        <div class="col-sm-12 col-md-6 my-1"><InputText class="form-control" @bind-Value="NewTask.Task"/></div>
+        <div class="col-sm-12 col-md-6 my-1"><InputText class="form-control" id="input_task" @bind-Value="NewTask.Task"/></div>
         <div class="col-sm-12 col-md-6 my-1"><button class="btn btn-outline-primary" type="submit">Add Task</button></div>
     </div>
 </EditForm>

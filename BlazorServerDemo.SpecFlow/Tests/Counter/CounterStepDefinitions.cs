@@ -37,6 +37,7 @@ public class CounterStepDefinitions
     [Then(@"the page has errors is (.*)")]
     public async Task ThenThePageHasErrorsIs(string errors)
     {
+        await Task.Delay(1000);
         bool expected = bool.Parse(errors);
         Assert.Equal(expected, await _counterPageObject.HasErrors());
         
