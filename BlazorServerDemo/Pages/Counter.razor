@@ -1,40 +1,30 @@
 ﻿@page "/counter"
-
 @using System.Diagnostics
-<h3>Counter V @currentCounter</h3>
-<p>Current count: <div id="counter-val">@count</div></p>
+
+<p>Current count: <div id="counter-val">@_count</div></p>
 <p>Total count: @TotalCount</p>
 <button class="btn btn-primary" id="increase-btn" @onclick="CountClick">Click Me</button>
 @code {
-
-    static int version;
-    public Counter()
-    {
-        currentCounter = ++version;
-    }
-    
-    int currentCounter;
-    
     [Parameter]
     public int TotalCount { get; set; }
     
     [Parameter]
     public EventCallback<int> TotalCountChanged { get; set; }
     
-    int count = 0;
+    int _count = 0;
 
     protected override bool ShouldRender()
     {
-        return count is < 4 or > 6;
+        return _count is < 4 or > 6;
     }
 
     private void CountClick()
     {
-        count++;
+        _count++;
         
         TotalCountChanged.InvokeAsync(TotalCount + 1);
         
-        if (count > 9) //HACK will throw on 10
+        if (_count > 9) //HACK will throw on 10
             throw new UnreachableException("Paradox");
     }
 

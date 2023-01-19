@@ -33,5 +33,12 @@ public class CounterStepDefinitions
         
         Assert.Equal(value, counterValue);
     }
-    
+
+    [Then(@"the page has errors is (.*)")]
+    public async Task ThenThePageHasErrorsIs(string errors)
+    {
+        bool expected = bool.Parse(errors);
+        Assert.Equal(expected, await _counterPageObject.HasErrors());
+        
+    }
 }

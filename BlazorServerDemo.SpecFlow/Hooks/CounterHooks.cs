@@ -33,16 +33,4 @@ public class CounterHooks
         var playwright = container.Resolve<IPlaywright>();
         playwright.Dispose();
     }
-
-    [Then(@"the page has errors")]
-    public async Task ThenThePageHasErrors()
-    {
-        Assert.True(await _counterPageObject.HasErrors());
-    }
-    
-    [Then(@"the page has no errors")]
-    public async Task ThenThePageHasNoErrors()
-    {
-        Assert.False(await _counterPageObject.HasErrors());
-    }
 }
