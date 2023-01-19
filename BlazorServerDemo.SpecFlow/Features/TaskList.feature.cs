@@ -19,6 +19,7 @@ namespace BlazorServerDemo.SpecFlow.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [Xunit.TraitAttribute("Category", "UseSlowBrowser")]
     [Xunit.TraitAttribute("Category", "TaskList")]
     public partial class TaskListPageTasksFeature : object, Xunit.IClassFixture<TaskListPageTasksFeature.FixtureData>, System.IDisposable
     {
@@ -26,6 +27,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
+                "UseSlowBrowser",
                 "TaskList"};
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
@@ -43,6 +45,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "TaskList Page Tasks", "\tTaskList lists tasks for a user", ProgrammingLanguage.CSharp, new string[] {
+                        "UseSlowBrowser",
                         "TaskList"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -80,12 +83,12 @@ namespace BlazorServerDemo.SpecFlow.Features
         
         public virtual void FeatureBackground()
         {
-#line 5
-#line hidden
 #line 6
- testRunner.Given("a user logged in as username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
+ testRunner.Given("a user logged in as username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 8
  testRunner.And("the user is in the TaskList page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
@@ -103,7 +106,7 @@ namespace BlazorServerDemo.SpecFlow.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in TaskList page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -123,10 +126,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
+#line 6
 this.FeatureBackground();
 #line hidden
-#line 10
+#line 11
  testRunner.Then("the name on the page is username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

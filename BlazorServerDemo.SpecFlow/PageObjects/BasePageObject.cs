@@ -19,4 +19,8 @@ public class BasePageObject
         Page = await Browser.NewPageAsync();
         await Page.GotoAsync(PagePath + page);
     }
+    
+    public async Task<bool> HasErrors()
+        => await Page.Locator("#blazor-error-ui:visible").CountAsync() != 0;
+    
 }

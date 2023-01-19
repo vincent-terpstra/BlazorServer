@@ -19,6 +19,7 @@ namespace BlazorServerDemo.SpecFlow.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [Xunit.TraitAttribute("Category", "UseBrowser")]
     [Xunit.TraitAttribute("Category", "Counter")]
     public partial class CounterComponentChecksFeature : object, Xunit.IClassFixture<CounterComponentChecksFeature.FixtureData>, System.IDisposable
     {
@@ -26,6 +27,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
+                "UseBrowser",
                 "Counter"};
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
@@ -43,6 +45,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Counter Component checks", null, ProgrammingLanguage.CSharp, new string[] {
+                        "UseBrowser",
                         "Counter"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -104,7 +107,7 @@ namespace BlazorServerDemo.SpecFlow.Features
             argumentsOfScenario.Add("expected", expected);
             argumentsOfScenario.Add("errors", errors);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Counter is clicked (.*) times", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 4
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -124,19 +127,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
+#line 6
     testRunner.Given("a user in the counter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 6
+#line 7
     testRunner.Then("the page has errors is false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 7
+#line 8
     testRunner.When(string.Format("the increase button is clicked {0} times", total), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
     testRunner.Then(string.Format("the counter value is {0}", expected), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 10
     testRunner.Then(string.Format("the page has errors is {0}", errors), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

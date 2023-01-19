@@ -1,4 +1,5 @@
-﻿@Counter
+﻿@UseBrowser
+@Counter
 Feature: Counter Component checks
 
 Scenario: Counter is clicked (.*) times
