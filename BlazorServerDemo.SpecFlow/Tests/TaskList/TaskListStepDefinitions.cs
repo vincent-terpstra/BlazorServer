@@ -36,4 +36,47 @@ public class TaskListStepDefinitions
         await _taskListPageObject.SetInputString(p0);
         await _taskListPageObject.SubmitTask();
     }
+
+    [Then(@"the progress is (.*)")]
+    public async Task ThenTheProgressIs(int p0)
+    {
+        int done = await _taskListPageObject.GetPercentDone();
+        Assert.Equal(p0, done);
+    }
+
+    [Then(@"the task at (.*) is ""(.*)""")]
+    public async Task ThenTheTaskAtIs(int idx, string taskText)
+    {
+        var taskList = await _taskListPageObject.GetTasks();
+        if (taskList.Count > idx)
+        {
+            string inner = await taskList[idx].InnerTextAsync();
+            Assert.Equal(taskText, inner);
+        }
+        else
+        {
+            Assert.False(true, "Not enough elements in the task list");
+        }
+    }
+
+    [When(@"task (.*) is clicked")]
+    public async Task WhenTaskIsSelected(int idx)
+    {
+        var taskList = await _taskListPageObject.GetTasks();
+        if (taskList.Count > idx)
+        {
+            await taskList[idx].ClickAsync();
+        }
+        else
+        {
+            Assert.False(true, "Not enough elements in the task list");
+        }
+    }
+
+    [Then(@"total tasks is (.*)")]
+    public async Task ThenTotalTasksIs(int total)
+    {
+        var taskList = await _taskListPageObject.GetTasks();
+        Assert.Equal(total, taskList.Count);
+    }
 }

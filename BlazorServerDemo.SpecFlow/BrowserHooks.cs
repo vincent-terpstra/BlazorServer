@@ -1,4 +1,4 @@
-﻿namespace BlazorServerDemo.SpecFlow.Hooks;
+﻿namespace BlazorServerDemo.SpecFlow;
 
 [Binding]
 public sealed class BrowserHooks
