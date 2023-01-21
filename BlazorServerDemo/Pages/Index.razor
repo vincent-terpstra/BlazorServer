@@ -3,6 +3,15 @@
 <PageTitle>Index</PageTitle>
 
 <button @onclick="EnterEditMode">Edit Mode</button>
+<h3>All Caps</h3>
+<InputAllCaps @bind-Value="AllCaps"/>
+<p>String is @AllCaps</p>
+
+
+@code {
+    private string AllCaps = String.Empty;
+}
+
 <div class="row">
     <div class="col-lg-6 col-md-12">
         <TaskList Name="Vincent"/>
@@ -32,6 +41,8 @@
     @code
     {
         int parentCount = 42;
+        
+        
     }
 
     <ErrorBoundary>

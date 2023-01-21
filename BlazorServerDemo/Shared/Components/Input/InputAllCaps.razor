@@ -1,0 +1,15 @@
+﻿<input @bind:get="@Value" @bind:set="@SetValueAsync" @bind:event="oninput"/>
+
+@code {
+
+    [Parameter]
+    public string Value { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+    
+    private async Task SetValueAsync(string value)
+    {
+        await ValueChanged.InvokeAsync(value.ToUpper());
+    }
+}
