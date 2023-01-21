@@ -22,7 +22,7 @@
     protected override Task OnErrorAsync(Exception exception)
     {
         _type = exception.GetType();
-        Logger.LogInformation("An Exception has occurred {Ex}", exception);
+        Logger.LogInformation(exception, "Exception blocked by ErrorBounds");
         return Task.CompletedTask;
     }
 }
