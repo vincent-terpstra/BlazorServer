@@ -1,4 +1,4 @@
-﻿@UseSlowBrowser
+﻿@UseBrowser
 @TaskList
 Feature: TaskList Page Tasks
 	TaskList lists tasks for a user

@@ -19,7 +19,7 @@ namespace BlazorServerDemo.SpecFlow.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [Xunit.TraitAttribute("Category", "UseSlowBrowser")]
+    [Xunit.TraitAttribute("Category", "UseBrowser")]
     [Xunit.TraitAttribute("Category", "TaskList")]
     public partial class TaskListPageTasksFeature : object, Xunit.IClassFixture<TaskListPageTasksFeature.FixtureData>, System.IDisposable
     {
@@ -27,7 +27,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "UseSlowBrowser",
+                "UseBrowser",
                 "TaskList"};
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
@@ -45,7 +45,7 @@ namespace BlazorServerDemo.SpecFlow.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "TaskList Page Tasks", "\tTaskList lists tasks for a user", ProgrammingLanguage.CSharp, new string[] {
-                        "UseSlowBrowser",
+                        "UseBrowser",
                         "TaskList"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -136,14 +136,14 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="User can add tasks")]
+        [Xunit.SkippableFactAttribute(DisplayName="Progress bar updates")]
         [Xunit.TraitAttribute("FeatureTitle", "TaskList Page Tasks")]
-        [Xunit.TraitAttribute("Description", "User can add tasks")]
-        public virtual void UserCanAddTasks()
+        [Xunit.TraitAttribute("Description", "Progress bar updates")]
+        public virtual void ProgressBarUpdates()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can add tasks", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progress bar updates", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -177,7 +177,7 @@ this.FeatureBackground();
  testRunner.And("the task at 0 is \"task one\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.When("task 0 is selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("task 0 is clicked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
  testRunner.Then("the progress is 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
