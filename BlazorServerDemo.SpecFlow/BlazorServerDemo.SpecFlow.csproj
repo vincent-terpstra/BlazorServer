@@ -29,4 +29,12 @@
       <ProjectReference Include="..\BlazorServerDemo\BlazorServerDemo.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="UnitTests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="UnitTests\Components\InputAllCapsTests.razor" />
+    </ItemGroup>
+
 </Project>
