@@ -1,0 +1,23 @@
+﻿@inherits Bunit.TestContext
+
+@code
+{
+    private string input = String.Empty;
+
+    [Fact]
+    public void Input_Changes_to_Uppercase()
+    {
+        //Arrange
+        var cut = Render(@<InputAllCaps @bind-Value="@input"/>);
+        string testString = "input_as_lower";
+        
+        //Act
+        var element = cut.Find("input");
+        element.Input(testString);
+        
+        //Assert
+        Assert.Equal(testString.ToUpper(), input);
+    }
+    
+    
+}
