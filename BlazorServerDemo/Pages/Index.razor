@@ -56,3 +56,18 @@
     </ErrorBoundary>
 
 </div>
+
+@code {
+
+    [Inject]
+    public ILogger<Index> Logger { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        using var _ = Logger.BeginStopwatch();
+        Logger.LogInformation("Before delay");
+        await Task.Delay(50);
+        Logger.LogInformation("After delay");
+    }
+}
