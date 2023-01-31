@@ -34,7 +34,7 @@
     <CustomErrorContent>
         <button @onclick="ThrowError">Throw Error</button>
         <Counter @bind-TotalCount="@parentCount"/>
-        <GenerateError/>
+        <GenerateError OnReturn="@ThrowError"/>
     </CustomErrorContent>
 
     @code

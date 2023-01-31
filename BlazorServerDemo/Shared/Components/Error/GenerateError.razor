@@ -5,9 +5,17 @@
     [CascadingParameter]
     private BlazorServerDemo.Pages.Index? Index { get; set; }
 
+    [Parameter]
+    public EventCallback OnReturn { get; set; }
+    
     private void CreateError()
-    {
+    {   
+        if (OnReturn.HasDelegate)
+                 OnReturn.InvokeAsync();
+        
         Index?.SetErrorMessage("Error Generated");
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+
+        
     }
 }
