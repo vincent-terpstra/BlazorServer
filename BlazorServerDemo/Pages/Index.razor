@@ -32,6 +32,7 @@
     <GenerateError/>
     <button @onclick="ThrowError">Throw Error Outside of Error Bounds</button>
     <CustomErrorContent>
+        <InitCounter/>
         <button @onclick="ThrowError">Throw Error</button>
         <Counter @bind-TotalCount="@parentCount"/>
         <GenerateError OnReturn="@ThrowError"/>

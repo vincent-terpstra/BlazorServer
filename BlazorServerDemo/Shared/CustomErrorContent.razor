@@ -1,4 +1,5 @@
-﻿@inherits ErrorBoundaryBase
+﻿@using System.Diagnostics
+@inherits ErrorBoundaryBase
 
 <h3>My Custom Error Block</h3>
 @ChildContent
@@ -16,10 +17,19 @@
     [Inject]
     ILogger<CustomErrorContent> Logger { get; set; }
 
+    [Inject] 
+    NavigationManager _navigation { get; set; }
+
     private List<Exception> _exceptions = new();
 
     protected override Task OnErrorAsync(Exception exception)
     {
+        if (exception is UnreachableException ex)
+        {
+            _navigation.NavigateTo("/counter");
+        }
+        
+        
         _exceptions.Add(exception);
         Logger.LogInformation(exception, "Exception blocked by ErrorBounds");
         return Task.CompletedTask;

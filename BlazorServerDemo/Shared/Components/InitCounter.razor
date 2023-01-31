@@ -1,0 +1,13 @@
+﻿<p>Init Count: @count</p>
+
+@code {
+    private int count;
+
+    private static int current = 1;
+    protected override void OnInitialized()
+    {
+        count = current++;
+        base.OnInitialized();
+    }
+
+}
