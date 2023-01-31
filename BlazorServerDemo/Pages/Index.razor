@@ -29,20 +29,19 @@
 <p>@ErrorMessage</p>
 <ErrorPopup @bind-ErrorMessage="ErrorMessage"></ErrorPopup>
 <div class="col-lg-4">
+    <GenerateError/>
+    <button @onclick="ThrowError">Throw Error Outside of Error Bounds</button>
     <CustomErrorContent>
-        <ChildContent>
-            <Counter @bind-TotalCount="@parentCount"/>
-        </ChildContent>
-        <ErrorContent>
-            <p class="errorUi">Counter broke reload page to fix</p>
-        </ErrorContent>
+        <button @onclick="ThrowError">Throw Error</button>
+        <Counter @bind-TotalCount="@parentCount"/>
+        <GenerateError/>
     </CustomErrorContent>
 
     @code
     {
         int parentCount = 42;
-        
-        
+
+
     }
 
     <ErrorBoundary>

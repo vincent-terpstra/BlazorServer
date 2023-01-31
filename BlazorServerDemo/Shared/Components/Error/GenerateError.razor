@@ -1,5 +1,5 @@
 ﻿
-<button @onclick="@CreateError">Generate Error</button>
+<button class="btn btn-primary" @onclick="@CreateError">Generate Error</button>
 
 @code {
     [CascadingParameter]
@@ -8,5 +8,6 @@
     private void CreateError()
     {
         Index?.SetErrorMessage("Error Generated");
+        throw new NotImplementedException();
     }
 }

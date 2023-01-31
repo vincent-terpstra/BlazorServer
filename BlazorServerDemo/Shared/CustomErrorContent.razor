@@ -3,26 +3,31 @@
 <h3>My Custom Error Block</h3>
 @ChildContent
 
-@if (CurrentException is not null)
+@foreach (var exception in _exceptions)
 {
-    @ErrorContent?.Invoke(CurrentException)
+    <h1>@exception.GetType()</h1>
+    <p>@exception.Message</p>
     
-    <p>@_type.ToString()</p>
-    <p>@CurrentException.Message</p>
 }
-
+<button class="btn btn-primary" @onclick="ClearAll" hidden="@(!_exceptions.Any())">Clear Errors</button>
 
 @code {
 
     [Inject]
     ILogger<CustomErrorContent> Logger { get; set; }
-    
-    private Type _type;
+
+    private List<Exception> _exceptions = new();
 
     protected override Task OnErrorAsync(Exception exception)
     {
-        _type = exception.GetType();
+        _exceptions.Add(exception);
         Logger.LogInformation(exception, "Exception blocked by ErrorBounds");
         return Task.CompletedTask;
+    }
+
+    private void ClearAll()
+    {
+        _exceptions = new List<Exception>();
+        StateHasChanged();
     }
 }

@@ -23,4 +23,9 @@ public partial class Index
         ErrorMessage = errorMessage;
         StateHasChanged();
     }
+
+    private void ThrowError()
+    {
+        throw new NotImplementedException();
+    }
 }
