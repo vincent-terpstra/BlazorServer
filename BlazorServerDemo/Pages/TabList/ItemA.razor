@@ -1,0 +1,14 @@
+﻿<h3>ItemA</h3>
+<h1>@_count</h1>
+@code {
+    private static int _initCount;
+
+    private int _count;
+    
+    protected override void OnInitialized()
+    {
+        _count = _initCount++;
+        base.OnInitialized();
+    }
+
+}

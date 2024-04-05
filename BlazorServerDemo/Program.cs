@@ -1,4 +1,5 @@
 using BlazorServerDemo;
+using BlazorServerDemo.Middleware;
 using DataAccess;
 using DataAccess.Services;
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.RegisterDependancies();
+builder.Services.AddScoped<RouteLogging>();
 
 var app = builder.Build();
 
@@ -28,6 +30,8 @@ else
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
+app.UseMiddleware<RouteLogging>();
 
 app.UseRouting();
 

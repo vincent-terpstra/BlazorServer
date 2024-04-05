@@ -1,0 +1,44 @@
+﻿<CascadingValue Value="@this">
+    @ChildContent
+</CascadingValue>
+
+@foreach (var item in _items)
+{
+    <button @onclick="() => SetCurrentTab(item)">@item.Title</button>
+}
+@foreach (var item in _items)
+{
+    <div @key=@item.Title style=@GetStyle(item)>
+        @item.ChildContent
+    </div>
+}
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+
+    private readonly List<TabItem> _items = new();
+    private TabItem? _current;
+
+    protected override void OnInitialized()
+    {
+        ArgumentNullException.ThrowIfNull(ChildContent);
+    }
+
+    private string GetStyle(TabItem item)
+        => item == _current ? "" : "display: none;";
+    
+    
+    private void SetCurrentTab(TabItem tabItem)
+    {
+        _current = tabItem;
+        StateHasChanged();
+    }
+
+    public void AddTab(TabItem tabItem)
+    {
+        _items.Add(tabItem);
+        _current ??= tabItem;
+        StateHasChanged();
+    }
+}

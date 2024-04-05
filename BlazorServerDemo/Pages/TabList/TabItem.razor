@@ -1,0 +1,16 @@
+﻿@code {
+    [CascadingParameter]
+    public TabList ParentTabList { get; set; } = default!;
+
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+    
+    protected override void OnInitialized()
+    {
+        ArgumentNullException.ThrowIfNull(ParentTabList);
+        ParentTabList.AddTab(this);
+    }
+}
