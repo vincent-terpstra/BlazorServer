@@ -2,10 +2,15 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\vdter\.nuget\packages\bodi\1.5.0\lib\netstandard2.0\BoDi.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=776e7845_002D9a57_002D4cdc_002D803c_002D5db8003e217e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="User in TaskList page" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::5DFD6582-7FD7-436F-92FD-9AA540ECDE39::net7.0::BlazorServerDemo.SpecFlow.Features.TaskListPageTasksFeature.UserInTaskListPage&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cceda807_002D2564_002D491e_002Db5d1_002D88b2763e3a66/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Add_SimpleValues_Should_Calculate #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f5e9e4b6_002D817e_002D4a01_002D8643_002Dd77279a564a1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Add_SimpleValues_Should_Calculate" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f5e9e4b6_002D817e_002D4a01_002D8643_002Dd77279a564a1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Add_SimpleValues_Should_Calculate" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

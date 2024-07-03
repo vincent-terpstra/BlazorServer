@@ -1,0 +1,10 @@
+﻿@page "/smartcombobox"
+@using SmartComponents
+
+<h3>SmartComboPage</h3>
+
+<SmartComboBox Url="api/accounting-categories" @bind-Value="@Text" />
+
+@code {
+    public string? Text { get; set; } = string.Empty;
+}

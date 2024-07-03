@@ -10,6 +10,8 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0" />
+      <PackageReference Include="SmartComponents.AspNetCore" Version="0.1.0-preview10148" />
+      <PackageReference Include="SmartComponents.LocalEmbeddings" Version="0.1.0-preview10148" />
     </ItemGroup>
 
     <ItemGroup>
