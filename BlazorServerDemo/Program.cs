@@ -3,6 +3,7 @@ using BlazorServerDemo.Middleware;
 using BlazorServerDemo.SmartComponents.Utils;
 using DataAccess;
 using DataAccess.Services;
+using SmartComponents.Inference.OpenAI;
 using SmartComponents.LocalEmbeddings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.RegisterDependancies();
 builder.Services.AddScoped<RouteLogging>();
-builder.Services.AddSmartComponents();
+builder.Services.AddSmartComponents()
+    .WithInferenceBackend<OpenAIInferenceBackend>();
 builder.Services.AddSingleton<LocalEmbedder>();
 
 var app = builder.Build();

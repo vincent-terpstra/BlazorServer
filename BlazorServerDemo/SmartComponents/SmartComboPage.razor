@@ -1,10 +1,28 @@
 ﻿@page "/smartcombobox"
 @using SmartComponents
 
-<h3>SmartComboPage</h3>
+<h3>Smart Combo Box</h3>
 
 <SmartComboBox Url="api/accounting-categories" @bind-Value="@Text" />
 
+<h3>Smart Text Area</h3>
+<SmartTextArea @bind-Value="@TextAreaText" UserRole=@UserRole UserPhrases="@UserPhrases" placeholder="Type here"
+    rows="10" cols="80" />
+
 @code {
     public string? Text { get; set; } = string.Empty;
+
+    public string? TextAreaText { get; set; } = string.Empty;
+
+    public readonly string UserRole = "Staff at a wild-west themed restaurant called 'The Wild Brunch'";
+    public readonly string[] UserPhrases = {
+        "Yee-haw!",
+        "So you wanna mosey on down for a bite?",
+        "Why sure, we can cook you up somethin' special",
+        "We're open everyday except Tuesdays (that's when we're at the rodeo)",
+        "Sorry pardner, even if you're the sherrif, we gotta stick to our policy!",
+        "Can I book you in for NEED_INFO",
+        "How can I help you, kind stranger?",
+        "Our website is at https://wildbrunch.example.com/"
+    };
 }
